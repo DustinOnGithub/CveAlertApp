@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/subscriptionsFragment">
+
+    <fragment
+        android:id="@+id/subscriptionsFragment"
+        android:name="com.example.cvealert.SubscriptionsFragment"
+        android:label="fragment_subscriptions"
+        tools:layout="@layout/fragment_subscriptions" >
+        <action
+            android:id="@+id/action_subscriptionsFragment_to_addSubscriptionFragment"
+            app:destination="@id/addSubscriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/timelineFragment"
+        android:name="com.example.cvealert.TimelineFragment"
+        android:label="fragment_timeline"
+        tools:layout="@layout/fragment_timeline" >
+        <action
+            android:id="@+id/action_timelineFragment_to_cveDetailFragment"
+            app:destination="@id/cveDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cveDetailFragment"
+        android:name="com.example.cvealert.CveDetailFragment"
+        android:label="fragment_cve_detail"
+        tools:layout="@layout/fragment_cve_detail" />
+    <fragment
+        android:id="@+id/addSubscriptionFragment"
+        android:name="com.example.cvealert.AddSubscriptionFragment"
+        android:label="fragment_add_subscription"
+        tools:layout="@layout/fragment_add_subscription" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.cvealert.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
