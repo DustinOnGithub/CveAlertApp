@@ -2,6 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/timelineFragment"
+        android:title="@string/timeline" />
+    <item
         android:id="@+id/subscriptionsFragment"
         android:title="@string/subscriptions" />
     <item
