@@ -14,8 +14,6 @@
             android:id="@+id/action_timelineFragment_to_cveDetailFragment"
             app:destination="@id/cveDetailFragment" />
     </fragment>
-
-
     <fragment
         android:id="@+id/subscriptionsFragment"
         android:name="com.example.cvealert.SubscriptionsFragment"
