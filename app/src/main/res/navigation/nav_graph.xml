@@ -21,7 +21,9 @@
         tools:layout="@layout/fragment_subscriptions">
         <action
             android:id="@+id/action_subscriptionsFragment_to_addSubscriptionFragment"
-            app:destination="@id/addSubscriptionFragment" />
+            app:destination="@id/addSubscriptionFragment"
+            app:launchSingleTop="false"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/cveDetailFragment"

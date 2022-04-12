@@ -3,11 +3,14 @@
 
     <item
         android:id="@+id/timelineFragment"
+        android:icon="@drawable/ic_baseline_dashboard_24"
         android:title="@string/timeline" />
     <item
         android:id="@+id/subscriptionsFragment"
+        android:icon="@drawable/ic_baseline_playlist_add_check_24"
         android:title="@string/subscriptions" />
     <item
         android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_baseline_settings_24"
         android:title="@string/settings" />
 </menu>
