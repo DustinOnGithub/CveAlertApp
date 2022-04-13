@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/timelineFragment"
-        android:name="com.example.cvealert.TimelineFragment"
+        android:name="com.example.cvealert.fragment.TimelineFragment"
         android:label="fragment_timeline"
         tools:layout="@layout/fragment_timeline">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/subscriptionsFragment"
-        android:name="com.example.cvealert.SubscriptionsFragment"
+        android:name="com.example.cvealert.fragment.SubscriptionsFragment"
         android:label="fragment_subscriptions"
         tools:layout="@layout/fragment_subscriptions">
         <action
@@ -27,17 +27,17 @@
     </fragment>
     <fragment
         android:id="@+id/cveDetailFragment"
-        android:name="com.example.cvealert.CveDetailFragment"
+        android:name="com.example.cvealert.fragment.CveDetailFragment"
         android:label="fragment_cve_detail"
         tools:layout="@layout/fragment_cve_detail" />
     <fragment
         android:id="@+id/addSubscriptionFragment"
-        android:name="com.example.cvealert.AddSubscriptionFragment"
+        android:name="com.example.cvealert.fragment.AddSubscriptionFragment"
         android:label="fragment_add_subscription"
         tools:layout="@layout/fragment_add_subscription" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.cvealert.SettingsFragment"
+        android:name="com.example.cvealert.fragment.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

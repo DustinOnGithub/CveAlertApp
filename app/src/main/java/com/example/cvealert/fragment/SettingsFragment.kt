@@ -1,10 +1,11 @@
-package com.example.cvealert
+package com.example.cvealert.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.cvealert.R
 
 class SettingsFragment : Fragment() {
 

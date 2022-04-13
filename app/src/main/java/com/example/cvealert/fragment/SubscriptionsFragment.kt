@@ -1,13 +1,13 @@
-package com.example.cvealert
+package com.example.cvealert.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
+import com.example.cvealert.R
 
 class SubscriptionsFragment : Fragment() {
 
