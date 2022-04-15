@@ -1,7 +1,6 @@
 package com.example.cvealert.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cvealert.R
 import com.example.cvealert.data.MyViewModel
 import com.example.cvealert.data.Setting
-import org.w3c.dom.Text
 
 class SettingsFragment : Fragment() {
 
@@ -32,7 +30,7 @@ class SettingsFragment : Fragment() {
 
         // display api key
         myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
-        myViewModel.readSetting.observe(viewLifecycleOwner, Observer { setting ->
+        myViewModel.getSetting.observe(viewLifecycleOwner, Observer { setting ->
             if (setting != null) {
                 apiKeyTextView.text = setting.apiKey
             }
@@ -51,7 +49,7 @@ class SettingsFragment : Fragment() {
     private fun updateSettings() {
 
         var currentSetting: Setting? = null
-        myViewModel.readSetting.observe(viewLifecycleOwner) { setting ->
+        myViewModel.getSetting.observe(viewLifecycleOwner) { setting ->
             currentSetting = setting
         }
 
@@ -61,7 +59,7 @@ class SettingsFragment : Fragment() {
         } else {
             val apiKey = apiKeyTextView.text.toString()
             val setting = Setting(0, apiKey)
-            myViewModel.addSetting(setting)
+            myViewModel.insertSetting(setting)
         }
 
         Toast.makeText(requireContext(), "Setting saved!", Toast.LENGTH_SHORT).show()

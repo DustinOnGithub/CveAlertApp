@@ -9,26 +9,52 @@ import kotlinx.coroutines.launch
 
 class MyViewModel(application: Application) : AndroidViewModel(application) {
 
-    val readAllData: LiveData<List<Setting>>
-    val readSetting: LiveData<Setting>
+    val getSetting: LiveData<Setting>
+    val getAllSubscriptions: LiveData<List<Subscription>>
+
     private val repository: MyRepository
 
     init {
-        val settingDao = MyDatabase.getDatabase(application).settingDao()
-        repository = MyRepository(settingDao)
-        readAllData = repository.readAllData
-        readSetting = repository.readSetting
+        repository = MyRepository(
+            MyDatabase.getDatabase(application).settingDao(),
+            MyDatabase.getDatabase(application).subscriptionDao()
+        )
+
+        getSetting = repository.getSetting
+        getAllSubscriptions = repository.getAllSubscription
     }
 
-    fun addSetting(setting: Setting) {
+    fun insertSetting(setting: Setting) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addSetting(setting)
+            repository.insertSetting(setting)
         }
     }
 
     fun updateSetting(setting: Setting) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateSetting(setting)
+        }
+    }
+
+    suspend fun getSubscriptionById(id: Int): LiveData<Subscription> {
+        return repository.getSubscriptionById(id)
+    }
+
+    fun insertSubscription(subscription: Subscription) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertSubscription(subscription)
+        }
+    }
+
+    fun updateSubscription(subscription: Subscription) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateSubscription(subscription)
+        }
+    }
+
+    fun deleteSubscription(subscription: Subscription) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteSubscription(subscription)
         }
     }
 

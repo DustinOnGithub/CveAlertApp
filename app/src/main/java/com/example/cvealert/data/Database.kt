@@ -7,10 +7,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(version = 1, entities = [Setting::class], exportSchema = false)
+@Database(version = 1, entities = [Setting::class, Subscription::class], exportSchema = false)
 abstract class MyDatabase : RoomDatabase() {
 
     abstract fun settingDao(): SettingDao
+    abstract fun subscriptionDao(): SubscriptionDao
 
     companion object {
         @Volatile
