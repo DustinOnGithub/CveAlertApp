@@ -32,9 +32,9 @@
         tools:layout="@layout/fragment_cve_detail" />
     <fragment
         android:id="@+id/addSubscriptionFragment"
-        android:name="com.example.cvealert.fragment.AddSubscriptionFragment"
+        android:name="com.example.cvealert.fragment.AddOrEditSubscriptionFragment"
         android:label="fragment_add_subscription"
-        tools:layout="@layout/fragment_add_subscription" />
+        tools:layout="@layout/fragment_add_or_edit_subscription" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.cvealert.fragment.SettingsFragment"
