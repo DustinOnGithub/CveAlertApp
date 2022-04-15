@@ -36,10 +36,7 @@ class SettingsFragment : Fragment() {
             }
         })
 
-        val saveBtn = view.findViewById<Button>(R.id.saveSettingsBtn)
-
-        saveBtn.setOnClickListener {
-
+        view.findViewById<Button>(R.id.saveSettingsBtn).setOnClickListener {
             updateSettings()
         }
 
