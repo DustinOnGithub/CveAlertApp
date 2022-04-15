@@ -8,7 +8,7 @@
     tools:context=".fragment.AddOrEditSubscriptionFragment">
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/HardOrSoftwareRG"
         android:layout_width="wrap_content"
         android:layout_height="102dp"
         android:layout_marginTop="44dp"
@@ -44,7 +44,7 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/HardOrSoftwareRG" />
 
     <EditText
         android:id="@+id/productTV"
@@ -73,11 +73,11 @@
         app:layout_constraintTop_toBottomOf="@+id/productTV" />
 
     <Button
-        android:id="@+id/addSubscriptionBtn"
+        android:id="@+id/saveSubscriptionBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/add"
+        android:text="@string/save"
         app:layout_constraintEnd_toEndOf="@+id/pushUpCB"
         app:layout_constraintStart_toStartOf="@+id/pushUpCB"
         app:layout_constraintTop_toBottomOf="@+id/pushUpCB" />

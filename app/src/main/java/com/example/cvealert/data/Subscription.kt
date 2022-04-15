@@ -13,4 +13,8 @@ class Subscription(
     val product: String,
     @ColumnInfo(name = "push_up_notification")
     val pushUpNotification: Boolean
+    //todo: add active field
+    //todo: add is_software field
+    //todo: add version field
+    //todo: add other fields like version, software type
 )
