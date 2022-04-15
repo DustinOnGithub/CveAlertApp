@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
 class Setting(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    @ColumnInfo(name = "api_ey")
-    val apiKey: String? = null
+    @ColumnInfo(name = "api_key")
+    var apiKey: String? = null
 )
