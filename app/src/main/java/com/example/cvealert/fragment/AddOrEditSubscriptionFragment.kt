@@ -33,7 +33,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_or_edit_subscription, container, false)
-        saveSubscriptionBtn = view.findViewById<Button>(R.id.saveSubscriptionBtn)
+        saveSubscriptionBtn = view.findViewById(R.id.saveSubscriptionBtn)
         myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
 
         cpePartRG = view.findViewById(R.id.HardOrSoftwareRG)
@@ -94,10 +94,10 @@ class AddOrEditSubscriptionFragment : Fragment() {
             else -> "o"
         }
 
-        val vendor = if (cpeVendorET.text.isEmpty()) "*" else cpeVendorET.text
-        val product = if (cpeProductET.text.isEmpty()) "*" else cpeProductET.text
-        val version = if (cpeVersionET.text.isEmpty()) "*" else cpeVersionET.text
-        val update = if (cpeUpdateET.text.isEmpty()) "*" else cpeUpdateET.text
+        val vendor = cpeVendorET.text.ifEmpty { "*" }
+        val product = cpeProductET.text.ifEmpty { "*" }
+        val version = cpeVersionET.text.ifEmpty { "*" }
+        val update = cpeUpdateET.text.ifEmpty { "*" }
         val edition = "*"
         val language = "*"
         val swEdition = "*"
