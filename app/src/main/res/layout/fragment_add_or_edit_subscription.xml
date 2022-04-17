@@ -112,8 +112,9 @@
         android:layout_height="wrap_content"
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="@+id/pushUpCB"
+        app:layout_constraintHorizontal_bias="0.691"
         app:layout_constraintStart_toStartOf="@+id/pushUpCB"
-        app:layout_constraintTop_toBottomOf="@+id/isActiveCB" />
+        app:layout_constraintTop_toBottomOf="@+id/cpeStringTV" />
 
     <CheckBox
         android:id="@+id/isActiveCB"
@@ -124,5 +125,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pushUpCB" />
+
+    <TextView
+        android:id="@+id/cpeStringTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/isActiveCB"
+        tools:text="cpe:2.3:a:microsoft:internet_explorer:8.0.6001:beta:*:*:*:*:*:* " />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
