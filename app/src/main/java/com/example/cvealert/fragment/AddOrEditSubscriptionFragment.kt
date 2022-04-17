@@ -23,6 +23,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
     private lateinit var cpeProductET: EditText
     private lateinit var cpeUpdateET: EditText
     private lateinit var cpeVersionET: EditText
+    private lateinit var cpeSwEditionET: EditText
     private lateinit var pushUpNotificationCB: CheckBox
     private lateinit var isActiveCB: CheckBox
     private lateinit var cpeStringTV: TextView
@@ -41,6 +42,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
         cpeProductET = view.findViewById(R.id.productET)
         cpeUpdateET = view.findViewById(R.id.updateET)
         cpeVersionET = view.findViewById(R.id.versionET)
+        cpeSwEditionET = view.findViewById(R.id.swEditionET)
         pushUpNotificationCB = view.findViewById(R.id.pushUpCB)
         isActiveCB = view.findViewById(R.id.isActiveCB)
         cpeStringTV = view.findViewById(R.id.cpeStringTV)
@@ -64,22 +66,9 @@ class AddOrEditSubscriptionFragment : Fragment() {
         cpeProductET.afterTextChanged { updateCpeTV() }
         cpeVersionET.afterTextChanged { updateCpeTV() }
         cpeUpdateET.afterTextChanged { updateCpeTV() }
+        cpeSwEditionET.afterTextChanged { updateCpeTV() }
 
         saveSubscriptionBtn.setOnClickListener { saveSubscription() }
-    }
-
-    private fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-        this.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-
-            override fun afterTextChanged(editable: Editable?) {
-                afterTextChanged.invoke(editable.toString())
-            }
-        })
     }
 
     @SuppressLint("SetTextI18n")
@@ -100,7 +89,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
         val update = cpeUpdateET.text.ifEmpty { "*" }
         val edition = "*"
         val language = "*"
-        val swEdition = "*"
+        val swEdition = cpeSwEditionET.text.ifEmpty { "*" }
         val targetSoftware = "*"
         val targetHardware = "*"
         val other = "*"
@@ -122,7 +111,13 @@ class AddOrEditSubscriptionFragment : Fragment() {
                 part = getSelectedPart(),
                 version = cpeVersionET.text.toString(),
                 update = cpeUpdateET.text.toString(),
-                isActive = isActiveCB.isChecked
+                isActive = isActiveCB.isChecked,
+                edition = "",
+                language = "",
+                swEdition = cpeSwEditionET.text.toString(),
+                targetSoftware = "",
+                targetHardware = "",
+                other = ""
             )
         )
 
@@ -146,8 +141,22 @@ class AddOrEditSubscriptionFragment : Fragment() {
         cpeProductET.text.clear()
         cpeUpdateET.text.clear()
         cpeVersionET.text.clear()
+        cpeSwEditionET.text.clear()
         pushUpNotificationCB.isChecked = true
         isActiveCB.isChecked = true
     }
 
+    private fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+        this.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                afterTextChanged.invoke(editable.toString())
+            }
+        })
+    }
 }

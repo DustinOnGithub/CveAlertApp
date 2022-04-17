@@ -96,6 +96,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/versionET" />
 
+    <EditText
+        android:id="@+id/swEditionET"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:hint="Software edition"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updateET" />
+
     <CheckBox
         android:id="@+id/pushUpCB"
         android:layout_width="wrap_content"
@@ -104,7 +114,7 @@
         android:text="@string/pushUpNotification"
         app:layout_constraintEnd_toEndOf="@+id/productET"
         app:layout_constraintStart_toStartOf="@+id/productET"
-        app:layout_constraintTop_toBottomOf="@+id/updateET" />
+        app:layout_constraintTop_toBottomOf="@+id/swEditionET" />
 
     <Button
         android:id="@+id/saveSubscriptionBtn"

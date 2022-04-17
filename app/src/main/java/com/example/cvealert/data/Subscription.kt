@@ -26,4 +26,13 @@ class Subscription(
     val update: String,
     @ColumnInfo(name = "is_active")
     val isActive: Boolean,
+    val edition: String,
+    val language: String,
+    @ColumnInfo(name = "sw_edition")
+    val swEdition: String,
+    @ColumnInfo(name = "target_software")
+    val targetSoftware: String,
+    @ColumnInfo(name = "target_hardware")
+    val targetHardware: String,
+    val other: String
 )
