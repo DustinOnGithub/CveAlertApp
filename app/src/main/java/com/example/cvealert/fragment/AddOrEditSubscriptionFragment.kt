@@ -9,11 +9,20 @@ import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.example.cvealert.R
 import com.example.cvealert.data.MyViewModel
+import com.example.cvealert.data.Part
 import com.example.cvealert.data.Subscription
 
 class AddOrEditSubscriptionFragment : Fragment() {
 
     private lateinit var myViewModel: MyViewModel
+    private lateinit var cpePartRG: RadioGroup
+    private lateinit var cpeVendorET: EditText
+    private lateinit var cpeProductET: EditText
+    private lateinit var cpeUpdateET: EditText
+    private lateinit var cpeVersionET: EditText
+    private lateinit var pushUpNotificationCB: CheckBox
+    private lateinit var isActiveCB: CheckBox
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +31,18 @@ class AddOrEditSubscriptionFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add_or_edit_subscription, container, false)
         val saveSubscriptionBtn = view.findViewById<Button>(R.id.saveSubscriptionBtn)
         myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+
+        cpePartRG = view.findViewById(R.id.HardOrSoftwareRG)
+        cpeVendorET = view.findViewById(R.id.vendorET)
+        cpeProductET = view.findViewById(R.id.productET)
+        cpeUpdateET = view.findViewById(R.id.updateET)
+        cpeVersionET = view.findViewById(R.id.versionET)
+        pushUpNotificationCB = view.findViewById(R.id.pushUpCB)
+        isActiveCB = view.findViewById(R.id.isActiveCB)
+
+        clearInputs()
+
+        //todo: onchange listener
 
         saveSubscriptionBtn.text = resources.getString(R.string.add)
         saveSubscriptionBtn.setOnClickListener {
@@ -35,29 +56,41 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
         //todo: add update functionality
 
-        val hardOrSoftware = view.findViewById<RadioGroup>(R.id.HardOrSoftwareRG)
-        val vendorTv = view.findViewById<TextView>(R.id.vendorTV)
-        val productTv = view.findViewById<TextView>(R.id.productTV)
-        val pushUpNotificationCb = view.findViewById<CheckBox>(R.id.pushUpCB)
-
         myViewModel.insertSubscription(
             Subscription(
                 id = 0,
-                vendor = vendorTv.text.toString(),
-                product = productTv.text.toString(),
-                pushUpNotification = pushUpNotificationCb.isChecked
+                vendor = cpeVendorET.text.toString(),
+                product = cpeProductET.text.toString(),
+                pushUpNotification = pushUpNotificationCB.isChecked,
+                part = getSelectedPart(),
+                version = cpeVersionET.text.toString(),
+                update = cpeUpdateET.text.toString(),
+                isActive = isActiveCB.isChecked
             )
         )
 
-        clearView(view)
+        clearInputs()
 
         Toast.makeText(requireContext(), "Subscription added!", Toast.LENGTH_SHORT).show()
     }
 
-    private fun clearView(view: View) {
-        view.findViewById<RadioGroup>(R.id.HardOrSoftwareRG).check(R.id.SoftwareRB)
-        view.findViewById<TextView>(R.id.vendorTV).text = ""
-        view.findViewById<TextView>(R.id.productTV).text = ""
-        view.findViewById<CheckBox>(R.id.pushUpCB).isChecked = true
+    private fun getSelectedPart(): Part {
+        return when (cpePartRG.checkedRadioButtonId) {
+            R.id.partUndefinedRB -> Part.UNDEFINED
+            R.id.ApplicationRB -> Part.APPLICATIONS
+            R.id.HardwareRB -> Part.HARDWARE
+            else -> Part.OPERATING_SYSTEM
+        }
     }
+
+    private fun clearInputs() {
+        cpePartRG.check(R.id.partUndefinedRB)
+        cpeVendorET.text.clear()
+        cpeProductET.text.clear()
+        cpeUpdateET.text.clear()
+        cpeVersionET.text.clear()
+        pushUpNotificationCB.isChecked = true
+        isActiveCB.isChecked = true
+    }
+
 }

@@ -5,6 +5,14 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
+
+enum class Part {
+    UNDEFINED,
+    APPLICATIONS,
+    HARDWARE,
+    OPERATING_SYSTEM
+}
+
 @Entity(tableName = "subscription")
 class Subscription(
     @PrimaryKey(autoGenerate = true)
@@ -12,9 +20,10 @@ class Subscription(
     val vendor: String,
     val product: String,
     @ColumnInfo(name = "push_up_notification")
-    val pushUpNotification: Boolean
-    //todo: add active field
-    //todo: add is_software field
-    //todo: add version field
-    //todo: add other fields like version, software type
+    val pushUpNotification: Boolean,
+    val part: Part,
+    val version: String,
+    val update: String,
+    @ColumnInfo(name = "is_active")
+    val isActive: Boolean,
 )
