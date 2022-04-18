@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.example.cvealert.R
 import com.example.cvealert.data.Cpe
 import com.example.cvealert.data.MyViewModel
@@ -17,6 +18,8 @@ import com.example.cvealert.data.Part
 import com.example.cvealert.data.Subscription
 
 class AddOrEditSubscriptionFragment : Fragment() {
+
+    private val args by navArgs<AddOrEditSubscriptionFragmentArgs>()
 
     private lateinit var myViewModel: MyViewModel
     private lateinit var cpePartRG: RadioGroup
@@ -48,7 +51,29 @@ class AddOrEditSubscriptionFragment : Fragment() {
         isActiveCB = view.findViewById(R.id.isActiveCB)
         cpeStringTV = view.findViewById(R.id.cpeStringTV)
 
+        //todo: add ini fun
         clearInputs()
+
+        if (args.selectedSubscription != null) {
+            cpeVendorET.setText(args.selectedSubscription!!.vendor)
+            cpeSwEditionET.setText(args.selectedSubscription!!.swEdition)
+            cpeProductET.setText(args.selectedSubscription!!.product)
+            cpeUpdateET.setText(args.selectedSubscription!!.update)
+            cpeVersionET.setText(args.selectedSubscription!!.version)
+
+            pushUpNotificationCB.isChecked = args.selectedSubscription!!.pushUpNotification
+            isActiveCB.isChecked = args.selectedSubscription!!.isActive
+
+            cpePartRG.check(
+                when (args.selectedSubscription!!.part) {
+                    Part.HARDWARE -> R.id.HardwareRB
+                    Part.APPLICATIONS -> R.id.ApplicationRB
+                    Part.UNDEFINED -> R.id.ApplicationRB
+                    else -> R.id.OsRB
+                }
+            )
+        }
+
         updateCpeTV()
 
         saveSubscriptionBtn.text = resources.getString(R.string.add)
@@ -75,12 +100,13 @@ class AddOrEditSubscriptionFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun updateCpeTV() {
 
+        // DO NOT DELETE 'to.String()'; required because args
         val cpe = Cpe(
-            vendor = cpeVendorET.text.ifEmpty { "*" } as String,
-            product = cpeProductET.text.ifEmpty { "*" } as String,
-            version = cpeVersionET.text.ifEmpty { "*" } as String,
-            swEdition = cpeSwEditionET.text.ifEmpty { "*" } as String,
-            update = cpeUpdateET.text.ifEmpty { "*" } as String,
+            vendor = cpeVendorET.text.toString().ifEmpty { "*" },
+            product = cpeProductET.text.toString().ifEmpty { "*" },
+            version = cpeVersionET.text.toString().ifEmpty { "*" },
+            swEdition = cpeSwEditionET.text.toString().ifEmpty { "*" },
+            update = cpeUpdateET.text.toString().ifEmpty { "*" },
             part = getSelectedPart()
         )
 
