@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.example.cvealert.R
+import com.example.cvealert.data.Cpe
 import com.example.cvealert.data.MyViewModel
 import com.example.cvealert.data.Part
 import com.example.cvealert.data.Subscription
@@ -74,28 +75,16 @@ class AddOrEditSubscriptionFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun updateCpeTV() {
 
-        val cpeVersion = "cpe:2.3.:"
+        val cpe = Cpe(
+            vendor = cpeVendorET.text.ifEmpty { "*" } as String,
+            product = cpeProductET.text.ifEmpty { "*" } as String,
+            version = cpeVersionET.text.ifEmpty { "*" } as String,
+            swEdition = cpeSwEditionET.text.ifEmpty { "*" } as String,
+            update = cpeUpdateET.text.ifEmpty { "*" } as String,
+            part = getSelectedPart()
+        )
 
-        val part = when (getSelectedPart()) {
-            Part.APPLICATIONS -> "a"
-            Part.UNDEFINED -> "*"
-            Part.HARDWARE -> "h"
-            else -> "o"
-        }
-
-        val vendor = cpeVendorET.text.ifEmpty { "*" }
-        val product = cpeProductET.text.ifEmpty { "*" }
-        val version = cpeVersionET.text.ifEmpty { "*" }
-        val update = cpeUpdateET.text.ifEmpty { "*" }
-        val edition = "*"
-        val language = "*"
-        val swEdition = cpeSwEditionET.text.ifEmpty { "*" }
-        val targetSoftware = "*"
-        val targetHardware = "*"
-        val other = "*"
-
-        cpeStringTV.text =
-            "${cpeVersion}:${part}:${vendor}:${product}:${version}:${update}:${edition}:${language}:${swEdition}:$targetSoftware:$targetHardware:$other"
+        cpeStringTV.text = cpe.generateString()
     }
 
     private fun saveSubscription() {
