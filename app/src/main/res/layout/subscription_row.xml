@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/subscriptionRowLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24sp">
+
+    <TextView
+        android:id="@+id/cpeStringRowTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="cpe:2.3:a:microsoft:internet_explorer:8.0.6001:beta:*:*:*:*:*:* " />
+
+    <ImageButton
+        android:id="@+id/editSubscriptionIB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/deleteSubscriptionIB"
+        app:layout_constraintTop_toBottomOf="@+id/cpeStringRowTV"
+        app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+    <ImageButton
+        android:id="@+id/deleteSubscriptionIB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cpeStringRowTV"
+        app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

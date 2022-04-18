@@ -1,9 +1,12 @@
 package com.example.cvealert.data
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import androidx.versionedparcelable.ParcelField
+import kotlinx.parcelize.Parcelize
 
 
 enum class Part {
@@ -13,6 +16,7 @@ enum class Part {
     OPERATING_SYSTEM
 }
 
+@Parcelize
 @Entity(tableName = "subscription")
 class Subscription(
     @PrimaryKey(autoGenerate = true)
@@ -35,4 +39,4 @@ class Subscription(
     @ColumnInfo(name = "target_hardware")
     val targetHardware: String,
     val other: String
-)
+) : Parcelable

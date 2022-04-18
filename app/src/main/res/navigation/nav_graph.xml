@@ -34,7 +34,13 @@
         android:id="@+id/addSubscriptionFragment"
         android:name="com.example.cvealert.fragment.AddOrEditSubscriptionFragment"
         android:label="fragment_add_subscription"
-        tools:layout="@layout/fragment_add_or_edit_subscription" />
+        tools:layout="@layout/fragment_add_or_edit_subscription">
+        <argument
+            android:name="selectedSubscription"
+            app:argType="com.example.cvealert.data.Subscription"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.cvealert.fragment.SettingsFragment"
