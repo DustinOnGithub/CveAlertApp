@@ -16,7 +16,11 @@ interface SubscriptionDao {
     @Delete
     fun delete(subscription: Subscription)
 
-    @Query("SELECT * FROM subscription ORDER BY vendor, product DESC")
+    @Query(
+        "SELECT * FROM subscription " +
+                "ORDER BY part, vendor, product, version, `update`, edition, language, sw_edition, " +
+                "target_software, target_hardware, other, is_active, push_up_notification  DESC"
+    )
     fun getAll(): LiveData<List<Subscription>>
 
     @Query("SELECT * FROM subscription WHERE id = :id")
