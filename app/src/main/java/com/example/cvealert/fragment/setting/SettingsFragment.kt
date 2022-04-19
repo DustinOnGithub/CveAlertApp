@@ -1,4 +1,4 @@
-package com.example.cvealert.fragment
+package com.example.cvealert.fragment.setting
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

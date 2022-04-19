@@ -1,4 +1,4 @@
-package com.example.cvealert.fragment
+package com.example.cvealert.fragment.subscription
 
 import android.annotation.SuppressLint
 import android.os.Bundle

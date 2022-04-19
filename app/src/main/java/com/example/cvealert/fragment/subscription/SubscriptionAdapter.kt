@@ -1,4 +1,4 @@
-package com.example.cvealert.fragment
+package com.example.cvealert.fragment.subscription
 
 import android.app.AlertDialog
 import android.content.Context
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvealert.R
