@@ -40,6 +40,9 @@
             app:argType="com.example.cvealert.data.Subscription"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_addSubscriptionFragment_to_subscriptionsFragment"
+            app:destination="@id/subscriptionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

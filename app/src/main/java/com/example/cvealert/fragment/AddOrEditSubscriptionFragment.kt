@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.cvealert.R
 import com.example.cvealert.data.Cpe
@@ -67,7 +68,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
         clearInputs()
 
-        if (args.selectedSubscription != null) {
+        if (isEditSubscription()) {
             cpeVendorET.setText(args.selectedSubscription!!.vendor)
             cpeSwEditionET.setText(args.selectedSubscription!!.swEdition)
             cpeProductET.setText(args.selectedSubscription!!.product)
@@ -91,9 +92,11 @@ class AddOrEditSubscriptionFragment : Fragment() {
         }
 
         updateCpeTV()
-
-
         bindListener()
+    }
+
+    private fun isEditSubscription(): Boolean {
+        return args.selectedSubscription != null
     }
 
     private fun bindListener() {
@@ -128,30 +131,29 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
     private fun saveSubscription() {
 
-        //todo: add update functionality
+        val subscription = Subscription()
+        subscription.vendor = cpeVendorET.text.toString()
+        subscription.product = cpeProductET.text.toString()
+        subscription.pushUpNotification = pushUpNotificationCB.isChecked
+        subscription.part = getSelectedPart()
+        subscription.version = cpeVersionET.text.toString()
+        subscription.update = cpeUpdateET.text.toString()
+        subscription.isActive = isActiveCB.isChecked
+        subscription.swEdition = cpeSwEditionET.text.toString()
 
-        myViewModel.insertSubscription(
-            Subscription(
-                id = 0,
-                vendor = cpeVendorET.text.toString(),
-                product = cpeProductET.text.toString(),
-                pushUpNotification = pushUpNotificationCB.isChecked,
-                part = getSelectedPart(),
-                version = cpeVersionET.text.toString(),
-                update = cpeUpdateET.text.toString(),
-                isActive = isActiveCB.isChecked,
-                edition = "",
-                language = "",
-                swEdition = cpeSwEditionET.text.toString(),
-                targetSoftware = "",
-                targetHardware = "",
-                other = ""
+        if (isEditSubscription()) {
+            subscription.id = args.selectedSubscription!!.id
+            myViewModel.updateSubscription(subscription)
+            Toast.makeText(requireContext(), "Subscription saved!", Toast.LENGTH_LONG).show()
+            view?.findNavController()?.navigate(
+                R.id.action_addSubscriptionFragment_to_subscriptionsFragment
             )
-        )
+            return
+        }
 
+        myViewModel.insertSubscription(subscription)
         clearInputs()
-
-        Toast.makeText(requireContext(), "Subscription added!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Subscription added!", Toast.LENGTH_LONG).show()
     }
 
     private fun getSelectedPart(): Part {

@@ -14,27 +14,28 @@ enum class Part {
     OPERATING_SYSTEM
 }
 
+//todo: add unique index over all cpe values -> should be not able to have equal subscriptions
 @Parcelize
 @Entity(tableName = "subscription")
 class Subscription(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val vendor: String,
-    val product: String,
+    var id: Int = 0,
+    var vendor: String = "",
+    var product: String = "",
     @ColumnInfo(name = "push_up_notification")
-    val pushUpNotification: Boolean,
-    val part: Part,
-    val version: String,
-    val update: String,
+    var pushUpNotification: Boolean = true,
+    var part: Part = Part.UNDEFINED,
+    var version: String = "",
+    var update: String = "",
     @ColumnInfo(name = "is_active")
-    val isActive: Boolean,
-    val edition: String,
-    val language: String,
+    var isActive: Boolean = true,
+    var edition: String = "",
+    val language: String = "",
     @ColumnInfo(name = "sw_edition")
-    val swEdition: String,
+    var swEdition: String = "",
     @ColumnInfo(name = "target_software")
-    val targetSoftware: String,
+    val targetSoftware: String = "",
     @ColumnInfo(name = "target_hardware")
-    val targetHardware: String,
-    val other: String
+    val targetHardware: String = "",
+    val other: String = ""
 ) : Parcelable
