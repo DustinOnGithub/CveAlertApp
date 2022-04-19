@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -27,22 +25,22 @@ class SubscriptionsFragment : Fragment() {
     ): View {
 
         val view: View = inflater.inflate(R.layout.fragment_subscriptions, container, false)
-        val addSubscriptionBtn = view.findViewById<FloatingActionButton>(R.id.addSubscriptionButton)
-
         val recyclerView = view.findViewById<RecyclerView>(R.id.subscriptionRecyclerView)
         val adapter = SubscriptionAdapter()
+
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
         myViewModel.getAllSubscriptions.observe(viewLifecycleOwner, Observer { subscriptions ->
-            adapter.setData(subscriptions)
+            adapter.setData(subscriptions, myViewModel, requireContext())
         })
 
-        addSubscriptionBtn.setOnClickListener { myView: View ->
-            myView.findNavController()
-                .navigate(R.id.action_subscriptionsFragment_to_addSubscriptionFragment)
-        }
+        view.findViewById<FloatingActionButton>(R.id.addSubscriptionButton)
+            .setOnClickListener { thisView: View ->
+                thisView.findNavController()
+                    .navigate(R.id.action_subscriptionsFragment_to_addSubscriptionFragment)
+            }
 
         return view
     }
