@@ -131,6 +131,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
     private fun saveSubscription() {
 
+        val toastText: String
         val subscription = Subscription()
         subscription.vendor = cpeVendorET.text.toString()
         subscription.product = cpeProductET.text.toString()
@@ -143,18 +144,21 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
         if (isEditSubscription()) {
             subscription.id = args.selectedSubscription!!.id
+            toastText = "Subscription saved!"
             myViewModel.updateSubscription(subscription)
-            Toast.makeText(requireContext(), "Subscription saved!", Toast.LENGTH_LONG).show()
-            view?.findNavController()?.navigate(
-                R.id.action_addSubscriptionFragment_to_subscriptionsFragment
-            )
-            return
+        } else {
+            toastText = "Subscription added!"
+            myViewModel.insertSubscription(subscription)
         }
 
         //todo: check for duplications or already included subscription
-        myViewModel.insertSubscription(subscription)
+
         clearInputs()
-        Toast.makeText(requireContext(), "Subscription added!", Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), toastText, Toast.LENGTH_LONG).show()
+
+        view?.findNavController()?.navigate(
+            R.id.action_addSubscriptionFragment_to_subscriptionsFragment
+        )
     }
 
     private fun getSelectedPart(): Part {
