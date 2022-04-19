@@ -38,6 +38,14 @@ class AddOrEditSubscriptionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_or_edit_subscription, container, false)
+
+        findViews(view)
+        ini()
+
+        return view
+    }
+
+    private fun findViews(view: View) {
         saveSubscriptionBtn = view.findViewById(R.id.saveSubscriptionBtn)
         myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
 
@@ -50,8 +58,13 @@ class AddOrEditSubscriptionFragment : Fragment() {
         pushUpNotificationCB = view.findViewById(R.id.pushUpCB)
         isActiveCB = view.findViewById(R.id.isActiveCB)
         cpeStringTV = view.findViewById(R.id.cpeStringTV)
+    }
 
-        //todo: add ini fun
+    /**
+     * clear input fields; if edit-mode, fill input fields
+     */
+    private fun ini() {
+
         clearInputs()
 
         if (args.selectedSubscription != null) {
@@ -72,15 +85,15 @@ class AddOrEditSubscriptionFragment : Fragment() {
                     else -> R.id.OsRB
                 }
             )
+            saveSubscriptionBtn.text = resources.getString(R.string.save)
+        } else {
+            saveSubscriptionBtn.text = resources.getString(R.string.add)
         }
 
         updateCpeTV()
 
-        saveSubscriptionBtn.text = resources.getString(R.string.add)
 
         bindListener()
-
-        return view
     }
 
     private fun bindListener() {
