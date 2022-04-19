@@ -11,9 +11,9 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvealert.R
-import com.example.cvealert.data.Cpe
+import com.example.cvealert.Cpe
 import com.example.cvealert.data.MyViewModel
-import com.example.cvealert.data.Subscription
+import com.example.cvealert.data.subscription.Subscription
 
 class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.MyViewHolder>() {
 

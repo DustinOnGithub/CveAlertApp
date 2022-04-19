@@ -1,4 +1,7 @@
-package com.example.cvealert.data
+package com.example.cvealert
+
+import com.example.cvealert.data.subscription.Part
+import com.example.cvealert.data.subscription.Subscription
 
 class Cpe(
     private val cpeVersion: String = "2.3",

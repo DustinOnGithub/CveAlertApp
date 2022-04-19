@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.cvealert.R
 import com.example.cvealert.data.MyViewModel
-import com.example.cvealert.data.Setting
+import com.example.cvealert.data.setting.Setting
 
 class SettingsFragment : Fragment() {
 

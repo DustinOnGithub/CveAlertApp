@@ -1,7 +1,8 @@
-package com.example.cvealert.data
+package com.example.cvealert.data.setting
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.cvealert.data.setting.Setting
 
 @Dao
 interface SettingDao {

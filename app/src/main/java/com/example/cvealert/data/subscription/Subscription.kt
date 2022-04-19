@@ -1,4 +1,4 @@
-package com.example.cvealert.data
+package com.example.cvealert.data.subscription
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.cvealert.data.setting.Setting
+import com.example.cvealert.data.subscription.Subscription
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

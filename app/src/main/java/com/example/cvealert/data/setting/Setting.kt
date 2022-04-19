@@ -1,4 +1,4 @@
-package com.example.cvealert.data
+package com.example.cvealert.data.setting
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
