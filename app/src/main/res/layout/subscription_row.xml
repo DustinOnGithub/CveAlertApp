@@ -27,6 +27,8 @@
             android:id="@+id/editSubscriptionIB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/editSubscription"
+            android:minHeight="48dp"
             app:layout_constraintEnd_toStartOf="@+id/deleteSubscriptionIB"
             app:layout_constraintTop_toBottomOf="@+id/cpeStringRowTV"
             app:srcCompat="@drawable/ic_baseline_edit_24" />
@@ -35,9 +37,32 @@
             android:id="@+id/deleteSubscriptionIB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="delete Subscription"
+            android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cpeStringRowTV"
             app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+        <ImageView
+            android:id="@+id/subNotificationEnabledIv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editSubscriptionIB"
+            app:srcCompat="@drawable/ic_baseline_notifications_24" />
+
+
+        <ImageView
+            android:id="@+id/subIsActiveIv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/subNotificationEnabledIv"
+            app:layout_constraintTop_toTopOf="@+id/editSubscriptionIB"
+            app:srcCompat="@drawable/ic_baseline_check_24" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

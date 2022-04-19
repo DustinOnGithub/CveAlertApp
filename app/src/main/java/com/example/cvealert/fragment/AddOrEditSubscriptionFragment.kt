@@ -151,6 +151,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
             return
         }
 
+        //todo: check for duplications or already included subscription
         myViewModel.insertSubscription(subscription)
         clearInputs()
         Toast.makeText(requireContext(), "Subscription added!", Toast.LENGTH_LONG).show()

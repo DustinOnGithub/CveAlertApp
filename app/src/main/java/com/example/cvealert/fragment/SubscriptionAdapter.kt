@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.view.menu.MenuView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvealert.R
@@ -54,6 +56,7 @@ class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.MyViewHolde
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val currentItem = subscriptionList[position]
+        val isActiveIV = holder.itemView.findViewById<ImageView>(R.id.subIsActiveIv)
 
         holder.itemView.findViewById<ImageButton>(R.id.editSubscriptionIB).setOnClickListener {
             val action =
@@ -65,6 +68,20 @@ class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.MyViewHolde
 
         holder.itemView.findViewById<TextView>(R.id.cpeStringRowTV).text =
             Cpe.generateStringFromSubscription(currentItem)
+
+        if (currentItem.isActive) {
+            isActiveIV.setImageResource(R.drawable.ic_baseline_check_24)
+            isActiveIV.visibility = View.VISIBLE
+        } else {
+            isActiveIV.visibility = View.GONE
+        }
+
+        holder.itemView.findViewById<ImageView>(R.id.subNotificationEnabledIv).setImageResource(
+            if (currentItem.pushUpNotification)
+                R.drawable.ic_baseline_notifications_24
+            else
+                R.drawable.ic_baseline_notifications_off_24
+        )
 
         holder.addDeleteSubscriptionListener(currentItem, myViewModel, subscriptionFragmentContext)
     }
