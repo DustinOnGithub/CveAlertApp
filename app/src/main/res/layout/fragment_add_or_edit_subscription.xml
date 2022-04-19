@@ -9,49 +9,21 @@
 
     <!--    TODO: add back button-->
 
-    <RadioGroup
-        android:id="@+id/HardOrSoftwareRG"
+    <android.widget.Spinner
+        android:id="@+id/partSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:checkedButton="@id/ApplicationRB"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addSubscriptionLayout">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <RadioButton
-            android:id="@+id/partUndefinedRB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="undefined" />
-
-        <RadioButton
-            android:id="@+id/OsRB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Operating System" />
-
-        <RadioButton
-            android:id="@+id/ApplicationRB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:text="Application" />
-
-        <RadioButton
-            android:id="@+id/HardwareRB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hardware" />
-    </RadioGroup>
+    </android.widget.Spinner>
 
     <EditText
         android:id="@+id/vendorET"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
         android:ems="10"
         android:hint="Vendor"
         android:inputType="textPersonName"
@@ -59,7 +31,7 @@
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HardOrSoftwareRG" />
+        app:layout_constraintTop_toBottomOf="@+id/partSpinner" />
 
     <EditText
         android:id="@+id/productET"

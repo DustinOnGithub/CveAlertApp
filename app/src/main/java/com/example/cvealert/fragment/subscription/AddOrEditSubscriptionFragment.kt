@@ -23,7 +23,6 @@ class AddOrEditSubscriptionFragment : Fragment() {
     private val args by navArgs<AddOrEditSubscriptionFragmentArgs>()
 
     private lateinit var myViewModel: MyViewModel
-    private lateinit var cpePartRG: RadioGroup
     private lateinit var cpeVendorET: EditText
     private lateinit var cpeProductET: EditText
     private lateinit var cpeUpdateET: EditText
@@ -33,6 +32,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
     private lateinit var isActiveCB: CheckBox
     private lateinit var cpeStringTV: TextView
     private lateinit var saveSubscriptionBtn: Button
+    private lateinit var cpePartSpinner: Spinner
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +50,6 @@ class AddOrEditSubscriptionFragment : Fragment() {
         saveSubscriptionBtn = view.findViewById(R.id.saveSubscriptionBtn)
         myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
 
-        cpePartRG = view.findViewById(R.id.HardOrSoftwareRG)
         cpeVendorET = view.findViewById(R.id.vendorET)
         cpeProductET = view.findViewById(R.id.productET)
         cpeUpdateET = view.findViewById(R.id.updateET)
@@ -59,6 +58,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
         pushUpNotificationCB = view.findViewById(R.id.pushUpCB)
         isActiveCB = view.findViewById(R.id.isActiveCB)
         cpeStringTV = view.findViewById(R.id.cpeStringTV)
+        cpePartSpinner = view.findViewById(R.id.partSpinner)
     }
 
     /**
@@ -66,7 +66,12 @@ class AddOrEditSubscriptionFragment : Fragment() {
      */
     private fun ini() {
 
+        val spinnerOptions = resources.getStringArray(R.array.partOptions)
         clearInputs()
+        val spinnerAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, spinnerOptions)
+
+        cpePartSpinner.adapter = spinnerAdapter
 
         if (isEditSubscription()) {
             cpeVendorET.setText(args.selectedSubscription!!.vendor)
@@ -78,14 +83,15 @@ class AddOrEditSubscriptionFragment : Fragment() {
             pushUpNotificationCB.isChecked = args.selectedSubscription!!.pushUpNotification
             isActiveCB.isChecked = args.selectedSubscription!!.isActive
 
-            cpePartRG.check(
+            cpePartSpinner.setSelection(
                 when (args.selectedSubscription!!.part) {
-                    Part.HARDWARE -> R.id.HardwareRB
-                    Part.APPLICATIONS -> R.id.ApplicationRB
-                    Part.UNDEFINED -> R.id.ApplicationRB
-                    else -> R.id.OsRB
+                    Part.HARDWARE -> spinnerAdapter.getPosition(resources.getString(R.string.hardware))
+                    Part.APPLICATIONS -> spinnerAdapter.getPosition(resources.getString(R.string.application))
+                    Part.UNDEFINED -> spinnerAdapter.getPosition(resources.getString(R.string.undefined))
+                    else -> spinnerAdapter.getPosition(resources.getString(R.string.operatingSystem))
                 }
             )
+
             saveSubscriptionBtn.text = resources.getString(R.string.save)
         } else {
             saveSubscriptionBtn.text = resources.getString(R.string.add)
@@ -101,7 +107,20 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
     private fun bindListener() {
 
-        cpePartRG.setOnCheckedChangeListener { _, _ -> updateCpeTV() }
+        cpePartSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                updateCpeTV()
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                updateCpeTV()
+            }
+        }
         isActiveCB.setOnCheckedChangeListener { _, _ -> updateCpeTV() }
         pushUpNotificationCB.setOnCheckedChangeListener { _, _ -> updateCpeTV() }
         cpeVendorET.afterTextChanged { updateCpeTV() }
@@ -162,16 +181,23 @@ class AddOrEditSubscriptionFragment : Fragment() {
     }
 
     private fun getSelectedPart(): Part {
-        return when (cpePartRG.checkedRadioButtonId) {
-            R.id.partUndefinedRB -> Part.UNDEFINED
-            R.id.ApplicationRB -> Part.APPLICATIONS
-            R.id.HardwareRB -> Part.HARDWARE
+
+        val spinnerAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            resources.getStringArray(R.array.partOptions)
+        )
+
+        return when (cpePartSpinner.selectedItemId.toInt()) {
+            spinnerAdapter.getPosition(resources.getString(R.string.hardware)) -> Part.HARDWARE
+            spinnerAdapter.getPosition(resources.getString(R.string.application)) -> Part.APPLICATIONS
+            spinnerAdapter.getPosition(resources.getString(R.string.undefined)) -> Part.UNDEFINED
             else -> Part.OPERATING_SYSTEM
         }
     }
 
     private fun clearInputs() {
-        cpePartRG.check(R.id.partUndefinedRB)
+        cpePartSpinner.setSelection(0)
         cpeVendorET.text.clear()
         cpeProductET.text.clear()
         cpeUpdateET.text.clear()

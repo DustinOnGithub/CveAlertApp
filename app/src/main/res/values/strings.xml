@@ -10,4 +10,15 @@
     <string name="pushUpNotification">Push-up notification</string>
     <string name="add">Add</string>
     <string name="editSubscription">edit subscription</string>
+    <string name="undefined">Undefined</string>
+    <string name="operatingSystem">Operating System</string>
+    <string name="application">Application</string>
+    <string name="hardware">Hardware</string>
+
+    <string-array name="partOptions">
+        <item>@string/undefined</item>
+        <item>@string/operatingSystem</item>
+        <item>@string/application</item>
+        <item>@string/hardware</item>
+    </string-array>
 </resources>
