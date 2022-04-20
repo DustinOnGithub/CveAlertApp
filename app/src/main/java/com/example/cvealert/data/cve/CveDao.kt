@@ -1,4 +1,4 @@
-package com.example.cvealert.data.Cve
+package com.example.cvealert.data.cve
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

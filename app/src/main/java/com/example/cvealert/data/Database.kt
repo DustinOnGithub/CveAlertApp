@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.cvealert.data.Cve.Cve
-import com.example.cvealert.data.Cve.CveDao
+import com.example.cvealert.data.cve.Cve
+import com.example.cvealert.data.cve.CveDao
 import com.example.cvealert.data.setting.Setting
 import com.example.cvealert.data.setting.SettingDao
 import com.example.cvealert.data.subscription.Subscription
