@@ -161,6 +161,19 @@ class AddOrEditSubscriptionFragment : Fragment() {
         subscription.isActive = isActiveCB.isChecked
         subscription.swEdition = cpeSwEditionET.text.toString()
 
+        if (!subscription.isValid()) {
+            Toast.makeText(
+                requireContext(),
+                "Please fill in all required fields! This is Part, Vendor and Product",
+                Toast.LENGTH_LONG
+            )
+                .show()
+
+            return
+        }
+
+        //todo: check for duplications or already included subscription
+
         if (isEditSubscription()) {
             subscription.id = args.selectedSubscription!!.id
             toastText = "Subscription saved!"
@@ -169,8 +182,6 @@ class AddOrEditSubscriptionFragment : Fragment() {
             toastText = "Subscription added!"
             myViewModel.insertSubscription(subscription)
         }
-
-        //todo: check for duplications or already included subscription
 
         clearInputs()
         Toast.makeText(requireContext(), toastText, Toast.LENGTH_LONG).show()

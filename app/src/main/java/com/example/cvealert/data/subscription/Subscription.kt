@@ -38,4 +38,24 @@ class Subscription(
     @ColumnInfo(name = "target_hardware")
     val targetHardware: String = "",
     val other: String = ""
-) : Parcelable
+) : Parcelable {
+
+    /**
+     * checks if the subscription is valid to safe in db.
+     * checks if all required fields are filled
+     */
+    fun isValid(): Boolean {
+
+        if (part == Part.UNDEFINED) {
+            return false
+        }
+        if (vendor.isEmpty() || vendor == "*") {
+            return false
+        }
+        if (product.isEmpty() || product == "*") {
+            return false
+        }
+
+        return true
+    }
+}
