@@ -4,16 +4,23 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.cvealert.data.Cve.Cve
+import com.example.cvealert.data.Cve.CveDao
 import com.example.cvealert.data.setting.Setting
 import com.example.cvealert.data.setting.SettingDao
 import com.example.cvealert.data.subscription.Subscription
 import com.example.cvealert.data.subscription.SubscriptionDao
 
-@Database(version = 1, entities = [Setting::class, Subscription::class], exportSchema = false)
+@Database(
+    version = 1,
+    entities = [Setting::class, Subscription::class, Cve::class],
+    exportSchema = false
+)
 abstract class MyDatabase : RoomDatabase() {
 
     abstract fun settingDao(): SettingDao
     abstract fun subscriptionDao(): SubscriptionDao
+    abstract fun cveDao(): CveDao
 
     companion object {
         @Volatile

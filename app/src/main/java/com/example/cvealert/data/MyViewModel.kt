@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.cvealert.data.Cve.Cve
 import com.example.cvealert.data.setting.Setting
 import com.example.cvealert.data.subscription.Subscription
 import kotlinx.coroutines.Dispatchers
@@ -13,17 +14,36 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
 
     val getSetting: LiveData<Setting>
     val getAllSubscriptions: LiveData<List<Subscription>>
+    val getAllCves: LiveData<List<Cve>>
 
-    private val repository: MyRepository
+    private val repository: MyRepository = MyRepository(
+        MyDatabase.getDatabase(application).settingDao(),
+        MyDatabase.getDatabase(application).subscriptionDao(),
+        MyDatabase.getDatabase(application).cveDao()
+    )
 
     init {
-        repository = MyRepository(
-            MyDatabase.getDatabase(application).settingDao(),
-            MyDatabase.getDatabase(application).subscriptionDao()
-        )
-
         getSetting = repository.getSetting
         getAllSubscriptions = repository.getAllSubscription
+        getAllCves = repository.getAllCves
+    }
+
+    fun insertCve(cve: Cve) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertCve(cve)
+        }
+    }
+
+    fun updateCve(cve: Cve) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateCve(cve)
+        }
+    }
+
+    fun deleteCve(cve: Cve) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteCve(cve)
+        }
     }
 
     fun insertSetting(setting: Setting) {
