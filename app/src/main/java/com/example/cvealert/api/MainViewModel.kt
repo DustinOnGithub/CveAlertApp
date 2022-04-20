@@ -9,11 +9,25 @@ import retrofit2.Response
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
 
-    val myResponse: MutableLiveData<Response<Cves>> = MutableLiveData()
+    val cvesResponse: MutableLiveData<Response<Cves>> = MutableLiveData()
 
-    fun getCves() {
+    fun getCves(
+        resultsPerPage: Int,
+        apiKey: String?,
+        cpeMatchString: String?,
+        pubStartDate: String?,
+        pubEndDate: String?,
+        startIndex: Int?
+    ) {
         viewModelScope.launch {
-            myResponse.value = repository.getCves()
+            cvesResponse.value = repository.getCves(
+                resultsPerPage = resultsPerPage,
+                apiKey = apiKey,
+                cpeMatchString = cpeMatchString,
+                pubStartDate = pubStartDate,
+                pubEndDate = pubEndDate,
+                startIndex = startIndex
+            )
         }
     }
 

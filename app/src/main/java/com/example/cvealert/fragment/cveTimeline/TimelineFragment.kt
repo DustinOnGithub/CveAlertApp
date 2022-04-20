@@ -25,8 +25,15 @@ class TimelineFragment : Fragment() {
         val repository = Repository()
         val mainViewModelFactory = MainViewModelFactory(repository)
         mainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
-        mainViewModel.getCves()
-        mainViewModel.myResponse.observe(viewLifecycleOwner, Observer { response ->
+        mainViewModel.getCves(
+            resultsPerPage = 1,
+            apiKey = null,
+            cpeMatchString = null,
+            pubStartDate = null,
+            pubEndDate = null,
+            startIndex = null
+        )
+        mainViewModel.cvesResponse.observe(viewLifecycleOwner, Observer { response ->
             if (response.isSuccessful) {
                 Log.v("Response", response.body()?.resultsPerPage.toString())
                 Log.v("Response", response.body()?.startIndex.toString())
