@@ -31,6 +31,8 @@ class TimelineFragment : Fragment() {
                 Log.v("Response", response.body()?.resultsPerPage.toString())
                 Log.v("Response", response.body()?.startIndex.toString())
                 Log.v("Response", response.body()?.totalResults.toString())
+                val temp = response.body()?.result
+                Log.v("Response", response.body()?.result.toString())
             } else {
                 Log.v("Response", response.errorBody().toString())
                 Log.v("Response", response.code().toString())

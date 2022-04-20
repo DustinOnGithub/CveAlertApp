@@ -3,13 +3,13 @@ package com.example.cvealert.api
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cvealert.api.model.CvesResponse
+import com.example.cvealert.api.model.cves.Cves
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
 
-    val myResponse: MutableLiveData<Response<CvesResponse>> = MutableLiveData()
+    val myResponse: MutableLiveData<Response<Cves>> = MutableLiveData()
 
     fun getCves() {
         viewModelScope.launch {
