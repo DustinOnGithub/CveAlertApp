@@ -2,9 +2,7 @@
 package com.example.cvealert.api.model.cves;
 
 import java.util.List;
-
 import javax.annotation.Generated;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -19,7 +17,7 @@ public class Node {
     private List<Child> children = null;
     @SerializedName("cpe_match")
     @Expose
-    private List<Object> cpeMatch = null;
+    private List<CpeMatch> cpeMatch = null;
 
     public String getOperator() {
         return operator;
@@ -37,11 +35,11 @@ public class Node {
         this.children = children;
     }
 
-    public List<Object> getCpeMatch() {
+    public List<CpeMatch> getCpeMatch() {
         return cpeMatch;
     }
 
-    public void setCpeMatch(List<Object> cpeMatch) {
+    public void setCpeMatch(List<CpeMatch> cpeMatch) {
         this.cpeMatch = cpeMatch;
     }
 
