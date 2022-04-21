@@ -16,7 +16,7 @@ public class Child {
     private String operator;
     @SerializedName("children")
     @Expose
-    private List<Object> children = null;
+    private List<Child> children = null;
     @SerializedName("cpe_match")
     @Expose
     private List<CpeMatch> cpeMatch = null;
@@ -29,11 +29,11 @@ public class Child {
         this.operator = operator;
     }
 
-    public List<Object> getChildren() {
+    public List<Child> getChildren() {
         return children;
     }
 
-    public void setChildren(List<Object> children) {
+    public void setChildren(List<Child> children) {
         this.children = children;
     }
 
