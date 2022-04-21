@@ -37,7 +37,7 @@
         tools:layout="@layout/fragment_add_or_edit_subscription">
         <argument
             android:name="selectedSubscription"
-            app:argType="com.example.cvealert.data.subscription.Subscription"
+            app:argType="com.example.cvealert.database.subscription.Subscription"
             app:nullable="true"
             android:defaultValue="@null" />
         <action

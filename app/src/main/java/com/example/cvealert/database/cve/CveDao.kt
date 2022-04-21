@@ -1,8 +1,8 @@
-package com.example.cvealert.data.cve
+package com.example.cvealert.database.cve
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.cvealert.data.cpe.Cpe
+import com.example.cvealert.database.cpe.Cpe
 
 @Dao
 interface CveDao {

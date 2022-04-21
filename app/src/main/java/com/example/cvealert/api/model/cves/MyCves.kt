@@ -1,22 +1,22 @@
 package com.example.cvealert.api.model.cves
 
 import android.util.Log
-import com.example.cvealert.data.cpe.Cpe
+import com.example.cvealert.database.cpe.Cpe
 import com.example.cvealert.util.Constants
 
 class MyCves : Cves() {
 
-    fun generateDbCves(): List<com.example.cvealert.data.cve.Cve> {
+    fun generateDbCves(): List<com.example.cvealert.database.cve.Cve> {
 
-        val generatedCves: MutableList<com.example.cvealert.data.cve.Cve> = mutableListOf()
-        var newCve: com.example.cvealert.data.cve.Cve
+        val generatedCves: MutableList<com.example.cvealert.database.cve.Cve> = mutableListOf()
+        var newCve: com.example.cvealert.database.cve.Cve
 
         result?.cveItems?.forEach {
 
             checkVersionsOfCve(it)
 
             //todo: null safe
-            newCve = com.example.cvealert.data.cve.Cve(
+            newCve = com.example.cvealert.database.cve.Cve(
                 cve = getCveId(it),
                 description = getDescription(it.cve),
                 cvssV2String = getCvssV2String(it.impact),
@@ -103,10 +103,16 @@ class MyCves : Cves() {
         return impact.baseMetricV2?.severity ?: ""
     }
 
+    /**
+     * score 100.0 means that no data is available
+     */
     private fun getCvssV3Score(impact: Impact): Double {
         return impact.baseMetricV3?.cvssV3?.baseScore ?: 100.0
     }
 
+    /**
+     * score 100.0 means that no data is available
+     */
     private fun getCvssV2Score(impact: Impact): Double {
         return impact.baseMetricV2?.cvssV2?.baseScore ?: 100.0
     }

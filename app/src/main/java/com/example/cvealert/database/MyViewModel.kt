@@ -1,12 +1,12 @@
-package com.example.cvealert.data
+package com.example.cvealert.database
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.cvealert.data.cve.Cve
-import com.example.cvealert.data.setting.Setting
-import com.example.cvealert.data.subscription.Subscription
+import com.example.cvealert.database.cve.Cve
+import com.example.cvealert.database.setting.Setting
+import com.example.cvealert.database.subscription.Subscription
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -1,12 +1,12 @@
-package com.example.cvealert.data
+package com.example.cvealert.database
 
 import androidx.lifecycle.LiveData
-import com.example.cvealert.data.cve.Cve
-import com.example.cvealert.data.cve.CveDao
-import com.example.cvealert.data.setting.Setting
-import com.example.cvealert.data.setting.SettingDao
-import com.example.cvealert.data.subscription.Subscription
-import com.example.cvealert.data.subscription.SubscriptionDao
+import com.example.cvealert.database.cve.Cve
+import com.example.cvealert.database.cve.CveDao
+import com.example.cvealert.database.setting.Setting
+import com.example.cvealert.database.setting.SettingDao
+import com.example.cvealert.database.subscription.Subscription
+import com.example.cvealert.database.subscription.SubscriptionDao
 
 class MyRepository(
     private val settingDao: SettingDao,

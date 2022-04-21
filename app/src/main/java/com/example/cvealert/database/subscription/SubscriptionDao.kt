@@ -1,8 +1,7 @@
-package com.example.cvealert.data.subscription
+package com.example.cvealert.database.subscription
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.cvealert.data.subscription.Subscription
 
 @Dao
 interface SubscriptionDao {

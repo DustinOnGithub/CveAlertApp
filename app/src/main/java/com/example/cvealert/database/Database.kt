@@ -1,16 +1,16 @@
-package com.example.cvealert.data
+package com.example.cvealert.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.cvealert.data.cpe.Cpe
-import com.example.cvealert.data.cve.Cve
-import com.example.cvealert.data.cve.CveDao
-import com.example.cvealert.data.setting.Setting
-import com.example.cvealert.data.setting.SettingDao
-import com.example.cvealert.data.subscription.Subscription
-import com.example.cvealert.data.subscription.SubscriptionDao
+import com.example.cvealert.database.cpe.Cpe
+import com.example.cvealert.database.cve.Cve
+import com.example.cvealert.database.cve.CveDao
+import com.example.cvealert.database.setting.Setting
+import com.example.cvealert.database.setting.SettingDao
+import com.example.cvealert.database.subscription.Subscription
+import com.example.cvealert.database.subscription.SubscriptionDao
 
 @Database(
     version = 1,

@@ -12,19 +12,17 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.cvealert.R
 import com.example.cvealert.Cpe
 import com.example.cvealert.api.MainViewModel
 import com.example.cvealert.api.MainViewModelFactory
 import com.example.cvealert.api.Repository
-import com.example.cvealert.api.model.cves.Cves
 import com.example.cvealert.api.model.cves.MyCves
-import com.example.cvealert.data.MyViewModel
-import com.example.cvealert.data.cve.Cve
-import com.example.cvealert.data.subscription.Part
-import com.example.cvealert.data.subscription.Subscription
+import com.example.cvealert.database.MyViewModel
+import com.example.cvealert.database.cve.Cve
+import com.example.cvealert.database.subscription.Part
+import com.example.cvealert.database.subscription.Subscription
 
 class AddOrEditSubscriptionFragment : Fragment() {
 

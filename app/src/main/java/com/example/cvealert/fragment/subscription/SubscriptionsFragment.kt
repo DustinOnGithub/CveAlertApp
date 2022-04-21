@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvealert.R
-import com.example.cvealert.data.MyViewModel
+import com.example.cvealert.database.MyViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class SubscriptionsFragment : Fragment() {

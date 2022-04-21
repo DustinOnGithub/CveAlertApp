@@ -1,9 +1,9 @@
-package com.example.cvealert.data.relation
+package com.example.cvealert.database.relation
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.example.cvealert.data.cpe.Cpe
-import com.example.cvealert.data.cve.Cve
+import com.example.cvealert.database.cpe.Cpe
+import com.example.cvealert.database.cve.Cve
 
 
 data class CveWithCpes(

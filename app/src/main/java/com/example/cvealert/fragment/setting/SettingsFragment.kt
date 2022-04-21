@@ -11,8 +11,8 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.cvealert.R
-import com.example.cvealert.data.MyViewModel
-import com.example.cvealert.data.setting.Setting
+import com.example.cvealert.database.MyViewModel
+import com.example.cvealert.database.setting.Setting
 
 class SettingsFragment : Fragment() {
 

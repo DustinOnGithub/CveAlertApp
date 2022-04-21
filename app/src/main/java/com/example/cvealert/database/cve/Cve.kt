@@ -1,4 +1,4 @@
-package com.example.cvealert.data.cve
+package com.example.cvealert.database.cve
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

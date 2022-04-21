@@ -1,7 +1,6 @@
-package com.example.cvealert.data.cpe
+package com.example.cvealert.database.cpe
 
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 
