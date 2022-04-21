@@ -7,8 +7,11 @@ import com.example.cvealert.data.cpe.Cpe
 @Dao
 interface CveDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(cve: Cve)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertMultiple(cves: Iterable<Cve>)
 
     @Insert
     fun insert(cpe: Cpe)

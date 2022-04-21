@@ -55,4 +55,8 @@ class MyRepository(
         subscriptionDao.delete(subscription)
     }
 
+    suspend fun insertCves(cves: Iterable<Cve>) {
+        cveDao.insertMultiple(cves)
+    }
+
 }

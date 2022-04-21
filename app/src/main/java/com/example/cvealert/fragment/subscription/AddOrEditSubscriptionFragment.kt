@@ -232,10 +232,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
                 val myCves: MyCves = response.body()!!
                 val generatedDbCves: List<Cve> = myCves.generateDbCves()
 
-                generatedDbCves.forEach {
-                    val result = myViewModel.insertCve(it)
-                    Log.v("Response", "db result: $result")
-                }
+                myViewModel.insertCves(generatedDbCves)
 
 
             } else {

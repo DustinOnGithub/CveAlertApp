@@ -34,6 +34,12 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun insertCves(cves: Iterable<Cve>) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertCves(cves)
+        }
+    }
+
     fun updateCve(cve: Cve) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateCve(cve)
