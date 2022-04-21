@@ -16,6 +16,9 @@ interface CveDao {
     @Insert
     fun insert(cpe: Cpe)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCPEs(cpes: Iterable<Cpe>)
+
     @Update
     fun update(cve: Cve)
 

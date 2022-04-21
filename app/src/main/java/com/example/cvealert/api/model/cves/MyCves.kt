@@ -35,7 +35,7 @@ class MyCves : Cves() {
         return generatedCves
     }
 
-    private fun generateDbCPEs(): List<Cpe> {
+    fun generateDbCPEs(): List<Cpe> {
 
         val generatedCPEs: MutableList<Cpe> = mutableListOf()
 

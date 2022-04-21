@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.cvealert.database.cpe.Cpe
 import com.example.cvealert.database.cve.Cve
 import com.example.cvealert.database.setting.Setting
 import com.example.cvealert.database.subscription.Subscription
@@ -37,6 +38,12 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
     fun insertCves(cves: Iterable<Cve>) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertCves(cves)
+        }
+    }
+
+    fun insertCPEs(cpes: Iterable<Cpe>) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insertCPEs(cpes)
         }
     }
 

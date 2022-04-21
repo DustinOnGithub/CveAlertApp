@@ -212,7 +212,6 @@ class AddOrEditSubscriptionFragment : Fragment() {
         mainViewModel.getCves(
             resultsPerPage = 20,
             apiKey = null,
-            //todo: do not escape cpe string
             cpeMatchString = Cpe.generateStringFromSubscription(subscription),
             pubStartDate = null,
             pubEndDate = null,
@@ -220,6 +219,8 @@ class AddOrEditSubscriptionFragment : Fragment() {
         )
 
         //todo: do not use this observer. Job will be killed if navigation changed
+        //todo: loop this if numberOfPages > 1
+
         mainViewModel.cvesResponse.observe(viewLifecycleOwner, Observer { response ->
             if (response.isSuccessful && response.body() != null && response.body()?.result != null) {
 
@@ -229,13 +230,16 @@ class AddOrEditSubscriptionFragment : Fragment() {
                 Log.v("Response", response.body()?.totalResults.toString())
                 val myCves: MyCves = response.body()!!
                 val generatedDbCves: List<Cve> = myCves.generateDbCves()
+                val generatedDbCpes: List<com.example.cvealert.database.cpe.Cpe> =
+                    myCves.generateDbCPEs()
+
                 myViewModel.insertCves(generatedDbCves)
+                myViewModel.insertCPEs(generatedDbCpes)
+
             } else {
                 Log.v("Response", response.errorBody().toString())
                 Log.v("Response", response.code().toString())
             }
-
-            //todo: call this function again if numberOfPages > 1
         })
     }
 

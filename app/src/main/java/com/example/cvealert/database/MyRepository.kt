@@ -1,6 +1,7 @@
 package com.example.cvealert.database
 
 import androidx.lifecycle.LiveData
+import com.example.cvealert.database.cpe.Cpe
 import com.example.cvealert.database.cve.Cve
 import com.example.cvealert.database.cve.CveDao
 import com.example.cvealert.database.setting.Setting
@@ -57,6 +58,10 @@ class MyRepository(
 
     suspend fun insertCves(cves: Iterable<Cve>) {
         cveDao.insertMultiple(cves)
+    }
+
+    suspend fun insertCPEs(cpes: Iterable<Cpe>) {
+        cveDao.insertCPEs(cpes)
     }
 
 }
