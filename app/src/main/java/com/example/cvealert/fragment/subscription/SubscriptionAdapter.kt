@@ -15,13 +15,13 @@ import com.example.cvealert.Cpe
 import com.example.cvealert.database.MyViewModelDb
 import com.example.cvealert.database.subscription.Subscription
 
-class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.MyViewHolder>() {
+class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.SubscriptionViewHolder>() {
 
     private var subscriptionList = emptyList<Subscription>()
     private lateinit var myViewModelDb: MyViewModelDb
     private lateinit var subscriptionFragmentContext: Context
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class SubscriptionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val deleteButton: ImageButton = itemView.findViewById(R.id.deleteSubscriptionIB)
 
@@ -45,14 +45,14 @@ class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.MyViewHolde
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubscriptionViewHolder {
 
-        return MyViewHolder(
+        return SubscriptionViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.subscription_row, parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SubscriptionViewHolder, position: Int) {
 
         val currentItem = subscriptionList[position]
         val isActiveIV = holder.itemView.findViewById<ImageView>(R.id.subIsActiveIv)
