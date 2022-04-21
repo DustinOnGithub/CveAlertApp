@@ -1,6 +1,7 @@
 package com.example.cvealert.api
 
 import com.example.cvealert.api.model.cves.Cves
+import com.example.cvealert.api.model.cves.MyCves
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -17,7 +18,7 @@ interface NvdApi {
         @Query("pubStartDate") pubStartDate: String?,
         @Query("pubEndDate") pubEndDate: String?,
         @Query("startIndex") startIndex: Int?
-    ): Response<Cves>
+    ): Response<MyCves>
 
 
 }

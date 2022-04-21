@@ -4,12 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cvealert.api.model.cves.Cves
+import com.example.cvealert.api.model.cves.MyCves
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
 
-    val cvesResponse: MutableLiveData<Response<Cves>> = MutableLiveData()
+    val cvesResponse: MutableLiveData<Response<MyCves>> = MutableLiveData()
 
     fun getCves(
         resultsPerPage: Int,
