@@ -4,17 +4,25 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.cvealert.R
 import com.example.cvealert.Cpe
+import com.example.cvealert.api.MainViewModel
+import com.example.cvealert.api.MainViewModelFactory
+import com.example.cvealert.api.Repository
+import com.example.cvealert.api.model.cves.Cves
+import com.example.cvealert.api.model.cves.MyCves
 import com.example.cvealert.data.MyViewModel
+import com.example.cvealert.data.cve.Cve
 import com.example.cvealert.data.subscription.Part
 import com.example.cvealert.data.subscription.Subscription
 
@@ -178,17 +186,65 @@ class AddOrEditSubscriptionFragment : Fragment() {
             subscription.id = args.selectedSubscription!!.id
             toastText = "Subscription saved!"
             myViewModel.updateSubscription(subscription)
+
+            //todo: delete no more used cves from DB if cpe-string is edit
+
         } else {
             toastText = "Subscription added!"
             myViewModel.insertSubscription(subscription)
         }
 
+        updateCves()
         clearInputs()
         Toast.makeText(requireContext(), toastText, Toast.LENGTH_LONG).show()
 
-        view?.findNavController()?.navigate(
-            R.id.action_addSubscriptionFragment_to_subscriptionsFragment
+        //todo: update cves, find cves with this subscription
+
+
+        //todo: background job, observer, will be killed if the navigation is changed
+//        view?.findNavController()?.navigate(
+//            R.id.action_addSubscriptionFragment_to_subscriptionsFragment
+//        )
+    }
+
+    private fun updateCves() {
+        val repository = Repository()
+        val mainViewModelFactory = MainViewModelFactory(repository)
+        val mainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
+        mainViewModel.getCves(
+            resultsPerPage = 20,
+            apiKey = null,
+            cpeMatchString = null,
+            pubStartDate = null,
+            pubEndDate = null,
+            startIndex = null
         )
+
+        //todo: do not use this observer. Job will be killed if navigation changed
+        //todo: find only cves with this cpe and inside a time window
+        mainViewModel.cvesResponse.observe(viewLifecycleOwner, Observer { response ->
+            if (response.isSuccessful && response.body() != null && response.body()?.result != null) {
+
+                Log.v("Response", "got response!!!")
+                Log.v("Response", response.body()?.resultsPerPage.toString())
+                Log.v("Response", response.body()?.startIndex.toString())
+                Log.v("Response", response.body()?.totalResults.toString())
+                val myCves: MyCves = response.body()!!
+                val generatedDbCves: List<Cve> = myCves.generateDbCves()
+
+                generatedDbCves.forEach {
+                    val result = myViewModel.insertCve(it)
+                    Log.v("Response", "db result: $result")
+                }
+
+
+            } else {
+                Log.v("Response", response.errorBody().toString())
+                Log.v("Response", response.code().toString())
+            }
+
+            //todo: call this function again if numberOfPages > 1
+        })
     }
 
     private fun getSelectedPart(): Part {

@@ -22,29 +22,8 @@ class TimelineFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val repository = Repository()
-        val mainViewModelFactory = MainViewModelFactory(repository)
-        mainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
-        mainViewModel.getCves(
-            resultsPerPage = 1,
-            apiKey = null,
-            cpeMatchString = null,
-            pubStartDate = null,
-            pubEndDate = null,
-            startIndex = null
-        )
-        mainViewModel.cvesResponse.observe(viewLifecycleOwner, Observer { response ->
-            if (response.isSuccessful) {
-                Log.v("Response", response.body()?.resultsPerPage.toString())
-                Log.v("Response", response.body()?.startIndex.toString())
-                Log.v("Response", response.body()?.totalResults.toString())
-                val temp = response.body()?.result
-                Log.v("Response", response.body()?.result.toString())
-            } else {
-                Log.v("Response", response.errorBody().toString())
-                Log.v("Response", response.code().toString())
-            }
-        })
+        //todo: update timeline on swipe down
+        //todo: ini timeline with recylerview
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_timeline, container, false)
