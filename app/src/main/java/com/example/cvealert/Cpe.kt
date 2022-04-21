@@ -40,7 +40,11 @@ class Cpe(
     }
 
     fun generateString(): String {
-        return "cpe:${cpeVersion}:${partToString()}:${vendor}:${product}:${version}:${update}:${edition}:${language}:${swEdition}:$targetSoftware:$targetHardware:$other"
+        return "cpe:${cpeVersion}:${partToString()}:${vendor.ifEmpty { "*" }}" +
+                ":${product.ifBlank { "*" }}:${version.ifBlank { "*" }}:${update.ifBlank { "*" }}" +
+                ":${edition.ifBlank { "*" }}:${language.ifBlank { "*" }}" +
+                ":${swEdition.ifBlank { "*" }}:${targetSoftware.ifBlank { "*" }}" +
+                ":${targetHardware.ifBlank { "*" }}:${other.ifBlank { "*" }}"
 
     }
 

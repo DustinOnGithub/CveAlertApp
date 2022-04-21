@@ -194,7 +194,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
             myViewModel.insertSubscription(subscription)
         }
 
-        updateCves()
+        searchAndInsertCves(subscription)
         clearInputs()
         Toast.makeText(requireContext(), toastText, Toast.LENGTH_LONG).show()
 
@@ -207,21 +207,21 @@ class AddOrEditSubscriptionFragment : Fragment() {
 //        )
     }
 
-    private fun updateCves() {
+    private fun searchAndInsertCves(subscription: Subscription) {
         val repository = Repository()
         val mainViewModelFactory = MainViewModelFactory(repository)
         val mainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
         mainViewModel.getCves(
             resultsPerPage = 20,
             apiKey = null,
-            cpeMatchString = null,
+            //todo: do not escape cpe string
+            cpeMatchString = Cpe.generateStringFromSubscription(subscription),
             pubStartDate = null,
             pubEndDate = null,
             startIndex = null
         )
 
         //todo: do not use this observer. Job will be killed if navigation changed
-        //todo: find only cves with this cpe and inside a time window
         mainViewModel.cvesResponse.observe(viewLifecycleOwner, Observer { response ->
             if (response.isSuccessful && response.body() != null && response.body()?.result != null) {
 
@@ -231,10 +231,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
                 Log.v("Response", response.body()?.totalResults.toString())
                 val myCves: MyCves = response.body()!!
                 val generatedDbCves: List<Cve> = myCves.generateDbCves()
-
                 myViewModel.insertCves(generatedDbCves)
-
-
             } else {
                 Log.v("Response", response.errorBody().toString())
                 Log.v("Response", response.code().toString())
