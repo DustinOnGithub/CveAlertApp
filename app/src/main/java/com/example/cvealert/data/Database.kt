@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.cvealert.data.cpe.Cpe
 import com.example.cvealert.data.cve.Cve
 import com.example.cvealert.data.cve.CveDao
 import com.example.cvealert.data.setting.Setting
@@ -13,7 +14,7 @@ import com.example.cvealert.data.subscription.SubscriptionDao
 
 @Database(
     version = 1,
-    entities = [Setting::class, Subscription::class, Cve::class],
+    entities = [Setting::class, Subscription::class, Cve::class, Cpe::class],
     exportSchema = false
 )
 abstract class MyDatabase : RoomDatabase() {
