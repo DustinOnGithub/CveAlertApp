@@ -19,7 +19,7 @@ import com.example.cvealert.api.MainViewModel
 import com.example.cvealert.api.MainViewModelFactory
 import com.example.cvealert.api.Repository
 import com.example.cvealert.api.model.cves.MyCves
-import com.example.cvealert.database.MyViewModel
+import com.example.cvealert.database.MyViewModelDb
 import com.example.cvealert.database.cve.Cve
 import com.example.cvealert.database.subscription.Part
 import com.example.cvealert.database.subscription.Subscription
@@ -28,7 +28,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
     private val args by navArgs<AddOrEditSubscriptionFragmentArgs>()
 
-    private lateinit var myViewModel: MyViewModel
+    private lateinit var myViewModelDb: MyViewModelDb
     private lateinit var cpeVendorET: EditText
     private lateinit var cpeProductET: EditText
     private lateinit var cpeUpdateET: EditText
@@ -54,7 +54,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
     private fun findViews(view: View) {
         saveSubscriptionBtn = view.findViewById(R.id.saveSubscriptionBtn)
-        myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+        myViewModelDb = ViewModelProvider(this).get(MyViewModelDb::class.java)
 
         cpeVendorET = view.findViewById(R.id.vendorET)
         cpeProductET = view.findViewById(R.id.productET)
@@ -183,13 +183,13 @@ class AddOrEditSubscriptionFragment : Fragment() {
         if (isEditSubscription()) {
             subscription.id = args.selectedSubscription!!.id
             toastText = "Subscription saved!"
-            myViewModel.updateSubscription(subscription)
+            myViewModelDb.updateSubscription(subscription)
 
             //todo: delete no more used cves from DB if cpe-string is edit
 
         } else {
             toastText = "Subscription added!"
-            myViewModel.insertSubscription(subscription)
+            myViewModelDb.insertSubscription(subscription)
         }
 
         searchAndInsertCves(subscription)
@@ -233,8 +233,8 @@ class AddOrEditSubscriptionFragment : Fragment() {
                 val generatedDbCpes: List<com.example.cvealert.database.cpe.Cpe> =
                     myCves.generateDbCPEs()
 
-                myViewModel.insertCves(generatedDbCves)
-                myViewModel.insertCPEs(generatedDbCpes)
+                myViewModelDb.insertCves(generatedDbCves)
+                myViewModelDb.insertCPEs(generatedDbCpes)
 
             } else {
                 Log.v("Response", response.errorBody().toString())

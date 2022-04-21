@@ -11,7 +11,7 @@ import com.example.cvealert.database.subscription.Subscription
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MyViewModel(application: Application) : AndroidViewModel(application) {
+class MyViewModelDb(application: Application) : AndroidViewModel(application) {
 
     val getSetting: LiveData<Setting>
     val getAllSubscriptions: LiveData<List<Subscription>>

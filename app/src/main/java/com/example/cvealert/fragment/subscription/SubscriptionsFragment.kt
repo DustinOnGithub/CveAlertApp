@@ -11,12 +11,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvealert.R
-import com.example.cvealert.database.MyViewModel
+import com.example.cvealert.database.MyViewModelDb
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class SubscriptionsFragment : Fragment() {
 
-    private lateinit var myViewModel: MyViewModel
+    private lateinit var myViewModelDb: MyViewModelDb
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,9 +31,9 @@ class SubscriptionsFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        myViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
-        myViewModel.getAllSubscriptions.observe(viewLifecycleOwner, Observer { subscriptions ->
-            adapter.setData(subscriptions, myViewModel, requireContext())
+        myViewModelDb = ViewModelProvider(this).get(MyViewModelDb::class.java)
+        myViewModelDb.getAllSubscriptions.observe(viewLifecycleOwner, Observer { subscriptions ->
+            adapter.setData(subscriptions, myViewModelDb, requireContext())
         })
 
         view.findViewById<FloatingActionButton>(R.id.addSubscriptionButton)

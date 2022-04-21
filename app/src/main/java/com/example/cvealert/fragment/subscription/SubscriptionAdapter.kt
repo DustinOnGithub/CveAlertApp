@@ -12,13 +12,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvealert.R
 import com.example.cvealert.Cpe
-import com.example.cvealert.database.MyViewModel
+import com.example.cvealert.database.MyViewModelDb
 import com.example.cvealert.database.subscription.Subscription
 
 class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.MyViewHolder>() {
 
     private var subscriptionList = emptyList<Subscription>()
-    private lateinit var myViewModel: MyViewModel
+    private lateinit var myViewModelDb: MyViewModelDb
     private lateinit var subscriptionFragmentContext: Context
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -27,12 +27,12 @@ class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.MyViewHolde
 
         fun addDeleteSubscriptionListener(
             item: Subscription,
-            myViewModel: MyViewModel,
+            myViewModelDb: MyViewModelDb,
             context: Context
         ) {
             deleteButton.setOnClickListener {
                 val builder = AlertDialog.Builder(context)
-                builder.setPositiveButton("Yes") { _, _ -> myViewModel.deleteSubscription(item) }
+                builder.setPositiveButton("Yes") { _, _ -> myViewModelDb.deleteSubscription(item) }
                 builder.setNegativeButton("No") { _, _ -> }
                 builder.setTitle("Delete subscription")
                 builder.setMessage(
@@ -82,15 +82,23 @@ class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.MyViewHolde
                 R.drawable.ic_baseline_notifications_off_24
         )
 
-        holder.addDeleteSubscriptionListener(currentItem, myViewModel, subscriptionFragmentContext)
+        holder.addDeleteSubscriptionListener(
+            currentItem,
+            myViewModelDb,
+            subscriptionFragmentContext
+        )
     }
 
     override fun getItemCount(): Int {
         return subscriptionList.size
     }
 
-    fun setData(subscriptionList: List<Subscription>, viewModel: MyViewModel, context: Context) {
-        myViewModel = viewModel
+    fun setData(
+        subscriptionList: List<Subscription>,
+        viewModelDb: MyViewModelDb,
+        context: Context
+    ) {
+        myViewModelDb = viewModelDb
         this.subscriptionFragmentContext = context
         this.subscriptionList = subscriptionList
         notifyDataSetChanged()
