@@ -1,10 +1,8 @@
-package com.example.cvealert.api
+package com.example.cvealert.api.old
 
-import com.example.cvealert.api.model.cves.Cves
 import com.example.cvealert.api.model.cves.MyCves
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface NvdApi {

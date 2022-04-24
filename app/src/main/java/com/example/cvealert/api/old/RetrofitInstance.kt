@@ -1,4 +1,4 @@
-package com.example.cvealert.api
+package com.example.cvealert.api.old
 
 import com.example.cvealert.util.Constants.Companion.BASE_NVD_URL
 import retrofit2.Retrofit

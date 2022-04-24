@@ -1,4 +1,4 @@
-package com.example.cvealert.api
+package com.example.cvealert.api.old
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

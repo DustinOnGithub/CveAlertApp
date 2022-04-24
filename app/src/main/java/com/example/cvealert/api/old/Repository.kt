@@ -1,6 +1,5 @@
-package com.example.cvealert.api
+package com.example.cvealert.api.old
 
-import com.example.cvealert.api.model.cves.Cves
 import com.example.cvealert.api.model.cves.MyCves
 import retrofit2.Response
 
