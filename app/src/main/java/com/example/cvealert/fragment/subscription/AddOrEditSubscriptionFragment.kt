@@ -4,25 +4,23 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.cvealert.R
 import com.example.cvealert.Cpe
-import com.example.cvealert.api.MainViewModel
-import com.example.cvealert.api.MainViewModelFactory
-import com.example.cvealert.api.Repository
-import com.example.cvealert.api.model.cves.MyCves
 import com.example.cvealert.database.MyViewModelDb
-import com.example.cvealert.database.cve.Cve
 import com.example.cvealert.database.subscription.Part
 import com.example.cvealert.database.subscription.Subscription
+import com.example.cvealert.workers.GetAndStoreCVEsByCPEWorker
 
 class AddOrEditSubscriptionFragment : Fragment() {
 
@@ -192,55 +190,24 @@ class AddOrEditSubscriptionFragment : Fragment() {
             myViewModelDb.insertSubscription(subscription)
         }
 
-        searchAndInsertCves(subscription)
+        enqueueGetAndStoreCVEsByCPEWorker(Cpe.generateStringFromSubscription(subscription))
+
         clearInputs()
         Toast.makeText(requireContext(), toastText, Toast.LENGTH_LONG).show()
 
-        //todo: update cves, find cves with this subscription
-
-
-        //todo: background job, observer, will be killed if the navigation is changed
-//        view?.findNavController()?.navigate(
-//            R.id.action_addSubscriptionFragment_to_subscriptionsFragment
-//        )
+        view?.findNavController()?.navigate(
+            R.id.action_addSubscriptionFragment_to_subscriptionsFragment
+        )
     }
 
-    private fun searchAndInsertCves(subscription: Subscription) {
-        val repository = Repository()
-        val mainViewModelFactory = MainViewModelFactory(repository)
-        val mainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
-        mainViewModel.getCves(
-            resultsPerPage = 20,
-            apiKey = null,
-            cpeMatchString = Cpe.generateStringFromSubscription(subscription),
-            pubStartDate = null,
-            pubEndDate = null,
-            startIndex = null
-        )
+    private fun enqueueGetAndStoreCVEsByCPEWorker(cpeString: String) {
+        val data = Data.Builder()
+        val worker = OneTimeWorkRequestBuilder<GetAndStoreCVEsByCPEWorker>()
 
-        //todo: do not use this observer. Job will be killed if navigation changed
-        //todo: loop this if numberOfPages > 1
+        data.putString("cpe_string", cpeString)
 
-        mainViewModel.cvesResponse.observe(viewLifecycleOwner, Observer { response ->
-            if (response.isSuccessful && response.body() != null && response.body()?.result != null) {
-
-                Log.v("Response", "got response!!!")
-                Log.v("Response", response.body()?.resultsPerPage.toString())
-                Log.v("Response", response.body()?.startIndex.toString())
-                Log.v("Response", response.body()?.totalResults.toString())
-                val myCves: MyCves = response.body()!!
-                val generatedDbCves: List<Cve> = myCves.generateDbCves()
-                val generatedDbCpes: List<com.example.cvealert.database.cpe.Cpe> =
-                    myCves.generateDbCPEs()
-
-                myViewModelDb.insertCves(generatedDbCves)
-                myViewModelDb.insertCPEs(generatedDbCpes)
-
-            } else {
-                Log.v("Response", response.errorBody().toString())
-                Log.v("Response", response.code().toString())
-            }
-        })
+        worker.setInputData(data.build())
+        WorkManager.getInstance(requireContext()).enqueue(worker.build())
     }
 
     private fun getSelectedPart(): Part {
