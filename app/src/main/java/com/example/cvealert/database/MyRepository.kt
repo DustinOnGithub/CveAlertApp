@@ -21,7 +21,7 @@ class MyRepository(
     val getAllCves: LiveData<List<Cve>> = cveDao.getAll()
 
     suspend fun insertCve(cve: Cve) {
-        cveDao.insert(cve)
+        cveDao.insertCVE(cve)
     }
 
     suspend fun updateCve(cve: Cve) {
@@ -57,10 +57,18 @@ class MyRepository(
     }
 
     suspend fun insertCves(cves: Iterable<Cve>) {
-        cveDao.insertMultiple(cves)
+        cveDao.insertCVEs(cves)
+    }
+
+    fun insertCvesSync(cves: Iterable<Cve>) {
+        cveDao.insertCVEs(cves)
     }
 
     suspend fun insertCPEs(cpes: Iterable<Cpe>) {
+        cveDao.insertCPEs(cpes)
+    }
+
+    fun insertCPEsSync(cpes: Iterable<Cpe>) {
         cveDao.insertCPEs(cpes)
     }
 

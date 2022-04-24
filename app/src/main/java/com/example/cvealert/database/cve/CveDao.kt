@@ -8,16 +8,22 @@ import com.example.cvealert.database.cpe.Cpe
 interface CveDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(cve: Cve)
+    fun insertCVE(cve: Cve)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMultiple(cves: Iterable<Cve>)
+    fun insertCVEs(cves: Iterable<Cve>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCVEsSync(cves: Iterable<Cve>)
 
     @Insert
-    fun insert(cpe: Cpe)
+    fun insertCPE(cpe: Cpe)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCPEs(cpes: Iterable<Cpe>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCPEsSync(cpes: Iterable<Cpe>)
 
     @Update
     fun update(cve: Cve)
