@@ -22,6 +22,9 @@ interface SubscriptionDao {
     )
     fun getAll(): LiveData<List<Subscription>>
 
+    @Query("SELECT * FROM subscription WHERE is_active = 1")
+    fun getAllActive(): List<Subscription>
+
     @Query("SELECT * FROM subscription WHERE id = :id")
     fun get(id: Int): LiveData<Subscription>
 }

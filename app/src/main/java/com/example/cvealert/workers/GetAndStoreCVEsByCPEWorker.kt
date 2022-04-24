@@ -17,44 +17,18 @@ class GetAndStoreCVEsByCPEWorker(context: Context, params: WorkerParameters) :
 
     override fun doWork(): Result {
 
-        val repositoryDb: MyRepository = MyRepository(
-            MyDatabase.getDatabase(applicationContext).settingDao(),
-            MyDatabase.getDatabase(applicationContext).subscriptionDao(),
-            MyDatabase.getDatabase(applicationContext).cveDao()
-        )
+        val helper = WorkerHelper(applicationContext, TAG!!)
 
-        val getCvesCall = NvdServiceInstance.service.getCVEs(
-            resultsPerPage = 20,
-            apiKey = null,
-            cpeMatchString = null, //cpeString,
-            pubStartDate = null,
-            pubEndDate = null,
-            startIndex = null
-        )
-
-        val response = getCvesCall?.execute()
-
-        //todo: loop this if numberOfPages > 1
-        if (response != null && response.isSuccessful && response.body() != null) {
-
-            Log.v(TAG, response.body()?.resultsPerPage.toString())
-            Log.v(TAG, response.body()?.startIndex.toString())
-            Log.v(TAG, response.body()?.totalResults.toString())
-            val myCves: MyCves = response.body()!!
-            val generatedDbCves: List<Cve> = myCves.generateDbCves()
-            val generatedDbCpes: List<com.example.cvealert.database.cpe.Cpe> =
-                myCves.generateDbCPEs()
-
-
-            repositoryDb.insertCvesSync(generatedDbCves)
-            repositoryDb.insertCPEsSync(generatedDbCpes)
-
-        } else {
-            Log.v("Response", response?.errorBody().toString())
-            Log.v("Response", response?.code().toString())
+        if (inputData.getString("cpe_string") == null) {
+            Log.w(TAG, "missing input data cpe_string")
+            return Result.failure()
         }
 
-        return Result.success()
+        if (helper.storeCVEsAndCPEsByCpeString(inputData.getString("cpe_string")!!)) {
+            return Result.success()
+        }
+
+        return Result.failure()
     }
 
 

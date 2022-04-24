@@ -19,6 +19,7 @@ class MyRepository(
     val getAllSettings: LiveData<List<Setting>> = settingDao.getAll()
     val getSetting: LiveData<Setting> = settingDao.get()
     val getAllSubscription: LiveData<List<Subscription>> = subscriptionDao.getAll()
+    val getAllActiveSubscriptions = subscriptionDao.getAllActive()
     val getAllCves: LiveData<List<Cve>> = cveDao.getAll()
 
     suspend fun insertCve(cve: Cve) {
