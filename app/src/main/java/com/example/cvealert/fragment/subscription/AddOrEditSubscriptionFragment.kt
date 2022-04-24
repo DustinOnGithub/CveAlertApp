@@ -12,9 +12,7 @@ import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.work.Data
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.example.cvealert.R
 import com.example.cvealert.Cpe
 import com.example.cvealert.database.MyViewModelDb
@@ -202,7 +200,9 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
     private fun enqueueGetAndStoreCVEsByCPEWorker(cpeString: String) {
         val data = Data.Builder()
+        val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED)
         val worker = OneTimeWorkRequestBuilder<GetAndStoreCVEsByCPEWorker>()
+            .setConstraints(constraints.build())
 
         data.putString("cpe_string", cpeString)
 
