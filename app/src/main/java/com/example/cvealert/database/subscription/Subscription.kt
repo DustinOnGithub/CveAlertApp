@@ -3,6 +3,7 @@ package com.example.cvealert.database.subscription
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
@@ -14,9 +15,19 @@ enum class Part {
     OPERATING_SYSTEM
 }
 
-//todo: add unique index over all cpe values -> should be not able to have equal subscriptions
 @Parcelize
-@Entity(tableName = "subscription")
+@Entity(
+    tableName = "subscription",
+    indices = [
+        Index(
+            value = [
+                "vendor", "product", "part", "version", "update", "edition",
+                "sw_edition", "target_software", "target_hardware", "language"
+            ],
+            unique = true
+        )
+    ]
+)
 class Subscription(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,

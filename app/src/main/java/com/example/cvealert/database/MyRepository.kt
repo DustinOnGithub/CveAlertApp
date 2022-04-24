@@ -1,5 +1,6 @@
 package com.example.cvealert.database
 
+import android.database.sqlite.SQLiteConstraintException
 import androidx.lifecycle.LiveData
 import com.example.cvealert.database.cpe.Cpe
 import com.example.cvealert.database.cve.Cve
@@ -45,11 +46,17 @@ class MyRepository(
     }
 
     suspend fun insertSubscription(subscription: Subscription) {
-        subscriptionDao.insert(subscription)
+        try {
+            subscriptionDao.insert(subscription)
+        } catch (e: SQLiteConstraintException) {
+        }
     }
 
     suspend fun updateSubscription(subscription: Subscription) {
-        subscriptionDao.update(subscription)
+        try {
+            subscriptionDao.update(subscription)
+        } catch (e: SQLiteConstraintException) {
+        }
     }
 
     suspend fun deleteSubscription(subscription: Subscription) {
@@ -65,11 +72,17 @@ class MyRepository(
     }
 
     suspend fun insertCPEs(cpes: Iterable<Cpe>) {
-        cveDao.insertCPEs(cpes)
+        try {
+            cveDao.insertCPEs(cpes)
+        } catch (e: SQLiteConstraintException) {
+        }
     }
 
     fun insertCPEsSync(cpes: Iterable<Cpe>) {
-        cveDao.insertCPEs(cpes)
+        try {
+            cveDao.insertCPEs(cpes)
+        } catch (e: SQLiteConstraintException) {
+        }
     }
 
 }
