@@ -8,6 +8,10 @@ import com.example.cvealert.api.service.NvdServiceInstance
 import com.example.cvealert.database.MyDatabase
 import com.example.cvealert.database.MyRepository
 import com.example.cvealert.database.cve.Cve
+import java.text.SimpleDateFormat
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class WorkerHelper(private val applicationContext: Context, private val TAG: String) {
 
@@ -32,13 +36,14 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
 
     fun storeCVEsAndCPEsByCpeString(cpeString: String): Boolean {
 
+        Log.v(TAG, generatePubStartDate())
 
         val getCvesCall = NvdServiceInstance.service.getCVEs(
-            resultsPerPage = 20,
+            resultsPerPage = 100,
             apiKey = null,
             cpeMatchString = cpeString, //cpeString,
-            pubStartDate = null,
-            pubEndDate = null,
+            pubStartDate = generatePubStartDate(),
+            pubEndDate = generatePubEndDate(),
             startIndex = null
         )
 
@@ -63,6 +68,22 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
         }
 
         return true
+    }
+
+    private fun generatePubStartDate(): String {
+
+        val dateTime = ZonedDateTime.now(TimeZone.getDefault().toZoneId()).minusMonths(1)
+
+        return dateTime.format(
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss:SSS 'UTC'xxx")
+        )
+    }
+
+    private fun generatePubEndDate(): String {
+
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss:SSS 'UTC'XXX")
+        return simpleDateFormat.format(Date())
+        //2022-01-01T00:00:00:000 UTC+02:00
     }
 
 }
