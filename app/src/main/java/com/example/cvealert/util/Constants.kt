@@ -5,6 +5,7 @@ class Constants {
     companion object {
         const val BASE_NVD_URL = "https://services.nvd.nist.gov"
         const val EXPECTED_CVE_DATA_VERSION = "4.0"
+        const val WORKER_REPEAT_INTERVAL: Long = 60 //minutes
     }
 
 }
