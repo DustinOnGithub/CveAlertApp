@@ -7,7 +7,7 @@ import androidx.room.*
 interface SubscriptionDao {
 
     @Insert
-    fun insert(subscription: Subscription)
+    fun insert(subscription: Subscription): Long
 
     @Update
     fun update(subscription: Subscription)

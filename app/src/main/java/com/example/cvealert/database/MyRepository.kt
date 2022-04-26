@@ -47,9 +47,14 @@ class MyRepository(
     }
 
     suspend fun insertSubscription(subscription: Subscription) {
+        insertSubscriptionSync(subscription)
+    }
+
+    fun insertSubscriptionSync(subscription: Subscription): Int {
         try {
-            subscriptionDao.insert(subscription)
+            return subscriptionDao.insert(subscription).toInt()
         } catch (e: SQLiteConstraintException) {
+            return -1
         }
     }
 
@@ -86,8 +91,11 @@ class MyRepository(
         }
     }
 
-    fun deleteCveWherePublishedDateSAfter(dateTime: String) {
+    fun deleteCveWherePublishedDateAfterSync(dateTime: String) {
         cveDao.deleteCveWherePublishedDateSAfter(dateTime)
     }
 
+    suspend fun deleteCveWherePublishedDateSAfter(time: String) {
+        cveDao.deleteCveWherePublishedDateSAfter(time)
+    }
 }

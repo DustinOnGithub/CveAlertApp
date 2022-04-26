@@ -24,7 +24,16 @@ class GetAndStoreCVEsByCPEWorker(context: Context, params: WorkerParameters) :
             return Result.failure()
         }
 
-        if (helper.storeCVEsAndCPEsByCpeString(inputData.getString("cpe_string")!!)) {
+        if (inputData.getString("setting_id") == null) {
+            Log.w(TAG, "missing input setting_id")
+            return Result.failure()
+        }
+
+        if (helper.storeCVEsAndCPEsByCpeString(
+                inputData.getString("cpe_string")!!,
+                inputData.getString("setting_id")!!.toInt()
+            )
+        ) {
             return Result.success()
         }
 

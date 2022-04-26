@@ -93,4 +93,10 @@ class MyViewModelDb(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun deleteCveWherePublishedDateAfterSync(time: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteCveWherePublishedDateSAfter(time)
+        }
+    }
+
 }

@@ -6,7 +6,7 @@ import com.example.cvealert.util.Constants
 
 class MyCves : Cves() {
 
-    fun generateDbCves(): List<com.example.cvealert.database.cve.Cve> {
+    fun generateDbCves(subscriptionId: Int): List<com.example.cvealert.database.cve.Cve> {
 
         val generatedCves: MutableList<com.example.cvealert.database.cve.Cve> = mutableListOf()
         var newCve: com.example.cvealert.database.cve.Cve
@@ -26,7 +26,8 @@ class MyCves : Cves() {
                 cvssV3Score = getCvssV3Score(it.impact).toFloat(),
                 cvssV3Severity = getCvssV3Severity(it.impact),
                 publishedDate = it.publishedDate,
-                lastModifiedDate = it.lastModifiedDate
+                lastModifiedDate = it.lastModifiedDate,
+                subscription_id = subscriptionId
             )
 
             generatedCves.add(newCve)

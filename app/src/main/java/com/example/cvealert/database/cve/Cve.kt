@@ -1,14 +1,23 @@
 package com.example.cvealert.database.cve
 
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.cvealert.database.subscription.Subscription
 
-@Entity(tableName = "cve")
+@Entity(
+    tableName = "cve",
+    foreignKeys = [ForeignKey(
+        entity = Subscription::class,
+        parentColumns = arrayOf("id"),
+        childColumns = arrayOf("subscription_id"),
+        onDelete = ForeignKey.CASCADE
+    )]
+)
 data class Cve(
     @PrimaryKey
     var cve: String,
     var description: String,
-    //todo: create a cpe-table for cpe relation: one-to-N
     var cvssV2String: String,
     var cvssV3String: String,
     var cvssV2Score: Float,
@@ -16,5 +25,6 @@ data class Cve(
     var cvssV2Severity: String,
     var cvssV3Severity: String,
     var publishedDate: String,
-    var lastModifiedDate: String
+    var lastModifiedDate: String,
+    var subscription_id: Int
 )

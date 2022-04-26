@@ -14,6 +14,7 @@ import com.example.cvealert.R
 import com.example.cvealert.Cpe
 import com.example.cvealert.database.MyViewModelDb
 import com.example.cvealert.database.subscription.Subscription
+import com.example.cvealert.util.Constants
 
 class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.SubscriptionViewHolder>() {
 
@@ -32,7 +33,10 @@ class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.Subscriptio
         ) {
             deleteButton.setOnClickListener {
                 val builder = AlertDialog.Builder(context)
-                builder.setPositiveButton("Yes") { _, _ -> myViewModelDb.deleteSubscription(item) }
+                builder.setPositiveButton("Yes") { _, _ ->
+                    myViewModelDb.deleteSubscription(item)
+                    myViewModelDb.deleteCveWherePublishedDateAfterSync(Constants.getLastCVEDateTime())
+                }
                 builder.setNegativeButton("No") { _, _ -> }
                 builder.setTitle("Delete subscription")
                 builder.setMessage(

@@ -8,6 +8,8 @@ import com.example.cvealert.api.service.NvdServiceInstance
 import com.example.cvealert.database.MyDatabase
 import com.example.cvealert.database.MyRepository
 import com.example.cvealert.database.cve.Cve
+import com.example.cvealert.database.subscription.Subscription
+import com.example.cvealert.util.Constants
 import java.text.SimpleDateFormat
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -22,7 +24,7 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
     )
 
     fun deleteOldCVEs() {
-        myRepository.deleteCveWherePublishedDateSAfter(getLastCVEDateTime())
+        myRepository.deleteCveWherePublishedDateAfterSync(Constants.getLastCVEDateTime())
     }
 
     fun getAndStoreCVEsAndCPEs() {
@@ -31,7 +33,10 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
 
         subscriptions.forEach { subscription ->
 
-            if (!storeCVEsAndCPEsByCpeString(Cpe.generateStringFromSubscription(subscription))) {
+            if (!storeCVEsAndCPEsByCpeString(
+                    Cpe.generateStringFromSubscription(subscription), subscription.id
+                )
+            ) {
                 Log.w(TAG, "failed to store and save CPEs and CVEs for subscription!")
             }
         }
@@ -41,13 +46,13 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
     /**
      * also updates CVEs and CPEs thanks to OnConflictStrategy.REPLACE
      */
-    fun storeCVEsAndCPEsByCpeString(cpeString: String): Boolean {
+    fun storeCVEsAndCPEsByCpeString(cpeString: String, subscriptionId: Int): Boolean {
 
         val getCvesCall = NvdServiceInstance.service.getCVEs(
             resultsPerPage = 100,
             apiKey = null,
-            cpeMatchString = cpeString, //cpeString,
-            pubStartDate = getLastCVEDateTime(),
+            cpeMatchString = cpeString,
+            pubStartDate = Constants.getLastCVEDateTime(),
             pubEndDate = generatePubEndDate(),
             startIndex = null
         )
@@ -58,7 +63,7 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
         if (response != null && response.isSuccessful && response.body() != null) {
 
             val myCves: MyCves = response.body()!!
-            val generatedDbCves: List<Cve> = myCves.generateDbCves()
+            val generatedDbCves: List<Cve> = myCves.generateDbCves(subscriptionId)
             val generatedDbCpes: List<com.example.cvealert.database.cpe.Cpe> =
                 myCves.generateDbCPEs()
 
@@ -73,11 +78,6 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
         }
 
         return true
-    }
-
-    private fun getLastCVEDateTime(): String {
-        return ZonedDateTime.now(TimeZone.getDefault().toZoneId()).minusMonths(1)
-            .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss:SSS 'UTC'xxx"))
     }
 
     private fun generatePubEndDate(): String {

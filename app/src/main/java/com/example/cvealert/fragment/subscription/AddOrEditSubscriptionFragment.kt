@@ -15,6 +15,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.work.*
 import com.example.cvealert.R
 import com.example.cvealert.Cpe
+import com.example.cvealert.database.MyDatabase
+import com.example.cvealert.database.MyRepository
 import com.example.cvealert.database.MyViewModelDb
 import com.example.cvealert.database.subscription.Part
 import com.example.cvealert.database.subscription.Subscription
@@ -184,11 +186,22 @@ class AddOrEditSubscriptionFragment : Fragment() {
             //todo: delete no more used cves from DB if cpe-string is edit
 
         } else {
-            toastText = "Subscription added!"
-            myViewModelDb.insertSubscription(subscription)
+            val myRepository = MyRepository(
+                MyDatabase.getDatabase(requireContext()).settingDao(),
+                MyDatabase.getDatabase(requireContext()).subscriptionDao(),
+                MyDatabase.getDatabase(requireContext()).cveDao()
+            )
+            subscription.id = myRepository.insertSubscriptionSync(subscription)
+
+            if (subscription.id == -1) {
+                toastText = "Subscription could not added!"
+            } else {
+                toastText = "Subscription added!"
+            }
+
         }
 
-        enqueueGetAndStoreCVEsByCPEWorker(Cpe.generateStringFromSubscription(subscription))
+        enqueueGetAndStoreCVEsByCPEWorker(subscription)
 
         clearInputs()
         Toast.makeText(requireContext(), toastText, Toast.LENGTH_LONG).show()
@@ -198,13 +211,14 @@ class AddOrEditSubscriptionFragment : Fragment() {
         )
     }
 
-    private fun enqueueGetAndStoreCVEsByCPEWorker(cpeString: String) {
+    private fun enqueueGetAndStoreCVEsByCPEWorker(subscription: Subscription) {
         val data = Data.Builder()
         val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED)
         val worker = OneTimeWorkRequestBuilder<GetAndStoreCVEsByCPEWorker>()
             .setConstraints(constraints.build())
 
-        data.putString("cpe_string", cpeString)
+        data.putString("cpe_string", Cpe.generateStringFromSubscription(subscription))
+        data.putString("setting_id", subscription.id.toString())
 
         worker.setInputData(data.build())
         WorkManager.getInstance(requireContext()).enqueue(worker.build())
