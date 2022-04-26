@@ -8,14 +8,11 @@ import com.example.cvealert.api.service.NvdServiceInstance
 import com.example.cvealert.database.MyDatabase
 import com.example.cvealert.database.MyRepository
 import com.example.cvealert.database.cve.Cve
-import com.example.cvealert.database.subscription.Subscription
 import com.example.cvealert.util.Constants
 import java.text.SimpleDateFormat
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
-class WorkerHelper(private val applicationContext: Context, private val TAG: String) {
+class WorkerHelper(applicationContext: Context, private val TAG: String) {
 
     private var myRepository: MyRepository = MyRepository(
         MyDatabase.getDatabase(applicationContext).settingDao(),

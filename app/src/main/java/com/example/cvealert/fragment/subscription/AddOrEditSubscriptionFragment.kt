@@ -52,7 +52,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
     private fun findViews(view: View) {
         saveSubscriptionBtn = view.findViewById(R.id.saveSubscriptionBtn)
-        myViewModelDb = ViewModelProvider(this).get(MyViewModelDb::class.java)
+        myViewModelDb = ViewModelProvider(this)[MyViewModelDb::class.java]
 
         cpeVendorET = view.findViewById(R.id.vendorET)
         cpeProductET = view.findViewById(R.id.productET)
@@ -193,10 +193,10 @@ class AddOrEditSubscriptionFragment : Fragment() {
             )
             subscription.id = myRepository.insertSubscriptionSync(subscription)
 
-            if (subscription.id == -1) {
-                toastText = "Subscription could not added!"
+            toastText = if (subscription.id == -1) {
+                "Subscription could not added!"
             } else {
-                toastText = "Subscription added!"
+                "Subscription added!"
             }
 
         }

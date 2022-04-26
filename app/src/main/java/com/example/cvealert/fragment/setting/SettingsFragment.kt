@@ -26,15 +26,15 @@ class SettingsFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
-        apiKeyTextView = view.findViewById<TextView>(R.id.apiKeyView)
+        apiKeyTextView = view.findViewById(R.id.apiKeyView)
 
         // display api key
-        myViewModelDb = ViewModelProvider(this).get(MyViewModelDb::class.java)
-        myViewModelDb.getSetting.observe(viewLifecycleOwner, Observer { setting ->
+        myViewModelDb = ViewModelProvider(this)[MyViewModelDb::class.java]
+        myViewModelDb.getSetting.observe(viewLifecycleOwner) { setting ->
             if (setting != null) {
                 apiKeyTextView.text = setting.apiKey
             }
-        })
+        }
 
         view.findViewById<Button>(R.id.saveSettingsBtn).setOnClickListener {
             updateSettings()

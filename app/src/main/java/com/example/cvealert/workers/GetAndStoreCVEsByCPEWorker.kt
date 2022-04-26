@@ -4,11 +4,6 @@ import android.content.Context
 import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.example.cvealert.api.model.cves.MyCves
-import com.example.cvealert.api.service.NvdServiceInstance
-import com.example.cvealert.database.MyDatabase
-import com.example.cvealert.database.MyRepository
-import com.example.cvealert.database.cve.Cve
 
 class GetAndStoreCVEsByCPEWorker(context: Context, params: WorkerParameters) :
     Worker(context, params) {
