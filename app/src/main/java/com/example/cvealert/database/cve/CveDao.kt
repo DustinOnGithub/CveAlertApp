@@ -31,6 +31,9 @@ interface CveDao {
     @Delete
     fun delete(cve: Cve)
 
+    @Query("DELETE FROM cve WHERE publishedDate < :datetime")
+    fun deleteCveWherePublishedDateSAfter(datetime: String)
+
     @Query("SELECT * FROM cve")
     fun getAll(): LiveData<List<Cve>>
 

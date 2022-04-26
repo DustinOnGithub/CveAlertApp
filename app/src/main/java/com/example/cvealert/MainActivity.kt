@@ -9,6 +9,7 @@ import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.cvealert.util.Constants
+import com.example.cvealert.workers.DeleteOldWorker
 import com.example.cvealert.workers.GetAndStoreWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.concurrent.TimeUnit
@@ -29,13 +30,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun enqueueWorkers() {
+        val workManager = WorkManager.getInstance(applicationContext)
         val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED)
-        val worker = PeriodicWorkRequestBuilder<GetAndStoreWorker>(
+        val getAndStoreWorker = PeriodicWorkRequestBuilder<GetAndStoreWorker>(
             Constants.WORKER_REPEAT_INTERVAL, TimeUnit.MINUTES,
-            5, TimeUnit.MINUTES
+            flexTimeInterval = 5, TimeUnit.MINUTES
         )
             .setConstraints(constraints.build())
 
-        WorkManager.getInstance(applicationContext).enqueue(worker.build())
+        val deleteOldWorker = PeriodicWorkRequestBuilder<DeleteOldWorker>(
+            1, TimeUnit.DAYS,
+            flexTimeInterval = 2, TimeUnit.HOURS
+        )
+
+        workManager.enqueue(getAndStoreWorker.build())
     }
 }

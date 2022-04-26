@@ -86,4 +86,8 @@ class MyRepository(
         }
     }
 
+    fun deleteCveWherePublishedDateSAfter(dateTime: String) {
+        cveDao.deleteCveWherePublishedDateSAfter(dateTime)
+    }
+
 }

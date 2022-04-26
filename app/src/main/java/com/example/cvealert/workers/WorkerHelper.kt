@@ -21,6 +21,10 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
         MyDatabase.getDatabase(applicationContext).cveDao()
     )
 
+    fun deleteOldCVEs() {
+        myRepository.deleteCveWherePublishedDateSAfter(getLastCVEDateTime())
+    }
+
     fun getAndStoreCVEsAndCPEs() {
 
         val subscriptions = myRepository.getAllActiveSubscriptions
@@ -34,15 +38,16 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
 
     }
 
+    /**
+     * also updates CVEs and CPEs thanks to OnConflictStrategy.REPLACE
+     */
     fun storeCVEsAndCPEsByCpeString(cpeString: String): Boolean {
-
-        Log.v(TAG, generatePubStartDate())
 
         val getCvesCall = NvdServiceInstance.service.getCVEs(
             resultsPerPage = 100,
             apiKey = null,
             cpeMatchString = cpeString, //cpeString,
-            pubStartDate = generatePubStartDate(),
+            pubStartDate = getLastCVEDateTime(),
             pubEndDate = generatePubEndDate(),
             startIndex = null
         )
@@ -70,13 +75,9 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
         return true
     }
 
-    private fun generatePubStartDate(): String {
-
-        val dateTime = ZonedDateTime.now(TimeZone.getDefault().toZoneId()).minusMonths(1)
-
-        return dateTime.format(
-            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss:SSS 'UTC'xxx")
-        )
+    private fun getLastCVEDateTime(): String {
+        return ZonedDateTime.now(TimeZone.getDefault().toZoneId()).minusMonths(1)
+            .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss:SSS 'UTC'xxx"))
     }
 
     private fun generatePubEndDate(): String {
