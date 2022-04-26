@@ -42,6 +42,10 @@ class MyRepository(
         settingDao.updateSetting(setting)
     }
 
+    fun getSettingSyn(): Setting {
+        return settingDao.getSync()
+    }
+
     suspend fun getSubscriptionById(id: Int): LiveData<Subscription> {
         return subscriptionDao.get(id)
     }

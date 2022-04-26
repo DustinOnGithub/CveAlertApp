@@ -8,17 +8,27 @@ import com.example.cvealert.api.service.NvdServiceInstance
 import com.example.cvealert.database.MyDatabase
 import com.example.cvealert.database.MyRepository
 import com.example.cvealert.database.cve.Cve
+import com.example.cvealert.database.setting.Setting
 import com.example.cvealert.util.Constants
 import java.text.SimpleDateFormat
 import java.util.*
 
-class WorkerHelper(applicationContext: Context, private val TAG: String) {
+class WorkerHelper(val applicationContext: Context, private val TAG: String) {
+
+    private var setting: Setting? = null
 
     private var myRepository: MyRepository = MyRepository(
         MyDatabase.getDatabase(applicationContext).settingDao(),
         MyDatabase.getDatabase(applicationContext).subscriptionDao(),
         MyDatabase.getDatabase(applicationContext).cveDao()
     )
+
+    private fun getSetting(): Setting? {
+        if (setting == null) {
+            setting = myRepository.getSettingSyn()
+        }
+        return setting
+    }
 
     fun deleteOldCVEs() {
         myRepository.deleteCveWherePublishedDateAfterSync(Constants.getLastCVEDateTime())
@@ -47,7 +57,7 @@ class WorkerHelper(applicationContext: Context, private val TAG: String) {
 
         val getCvesCall = NvdServiceInstance.service.getCVEs(
             resultsPerPage = 100,
-            apiKey = null,
+            apiKey = getSetting()?.apiKey,
             cpeMatchString = cpeString,
             pubStartDate = Constants.getLastCVEDateTime(),
             pubEndDate = generatePubEndDate(),
@@ -60,6 +70,15 @@ class WorkerHelper(applicationContext: Context, private val TAG: String) {
         if (response != null && response.isSuccessful && response.body() != null) {
 
             val myCves: MyCves = response.body()!!
+
+            if (myCves.error != null) {
+
+                Log.w(TAG, "response (error) from NVD: " + myCves.error)
+                Log.w(TAG, "response (message) from NVD: " + myCves.message)
+
+                return false
+            }
+
             val generatedDbCves: List<Cve> = myCves.generateDbCves(subscriptionId)
             val generatedDbCpes: List<com.example.cvealert.database.cpe.Cpe> =
                 myCves.generateDbCPEs()

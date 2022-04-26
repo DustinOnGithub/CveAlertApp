@@ -154,6 +154,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
     private fun saveSubscription() {
 
+        //todo: check if api-key is valid
         val toastText: String
         val subscription = Subscription()
         subscription.vendor = cpeVendorET.text.toString()

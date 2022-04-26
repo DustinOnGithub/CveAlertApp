@@ -18,6 +18,12 @@ public class Cves {
     @SerializedName("totalResults")
     @Expose
     private Integer totalResults;
+    @SerializedName("error")
+    @Expose
+    private String error;
+    @SerializedName("message")
+    @Expose
+    private String message;
     @SerializedName("result")
     @Expose
     private Result result;
@@ -52,6 +58,22 @@ public class Cves {
 
     public void setResult(Result result) {
         this.result = result;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 }

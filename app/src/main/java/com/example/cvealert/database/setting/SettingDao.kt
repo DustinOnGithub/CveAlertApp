@@ -14,6 +14,9 @@ interface SettingDao {
     @Query("SELECT * FROM Setting ORDER BY id ASC LIMIT 1 ")
     fun get(): LiveData<Setting>
 
+    @Query("SELECT * FROM Setting ORDER BY id ASC LIMIT 1 ")
+    fun getSync(): Setting
+
     @Update
     fun updateSetting(setting: Setting)
 }
