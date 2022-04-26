@@ -44,5 +44,6 @@ class MainActivity : AppCompatActivity() {
         )
 
         workManager.enqueue(getAndStoreWorker.build())
+        workManager.enqueue(deleteOldWorker.build())
     }
 }
