@@ -1,8 +1,14 @@
 package com.example.cvealert.workers
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.NotificationManager.IMPORTANCE_DEFAULT
 import android.content.Context
+import android.content.Context.NOTIFICATION_SERVICE
 import android.util.Log
+import androidx.core.app.NotificationCompat
 import com.example.cvealert.Cpe
+import com.example.cvealert.R
 import com.example.cvealert.api.model.cves.MyCves
 import com.example.cvealert.api.service.NvdServiceInstance
 import com.example.cvealert.database.MyDatabase
@@ -37,6 +43,7 @@ class WorkerHelper(val applicationContext: Context, private val TAG: String) {
     fun getAndStoreCVEsAndCPEs() {
 
         val subscriptions = myRepository.getAllActiveSubscriptions
+        var numberOfCVEs = myRepository.countCVEs()
 
         subscriptions.forEach { subscription ->
 
@@ -48,6 +55,10 @@ class WorkerHelper(val applicationContext: Context, private val TAG: String) {
             }
         }
 
+        numberOfCVEs = myRepository.countCVEs() - numberOfCVEs
+        if (numberOfCVEs > 1) {
+            sendNotification(numberOfCVEs)
+        }
     }
 
     /**
@@ -103,4 +114,29 @@ class WorkerHelper(val applicationContext: Context, private val TAG: String) {
         //2022-01-01T00:00:00:000 UTC+02:00
     }
 
+
+    companion object {
+        const val NOTIFICATION_NAME = "cveAlert"
+        const val NOTIFICATION_CHANNEL = "cveAlert_channel_01"
+    }
+
+    private fun sendNotification(numberOfNewCVEs: Int) {
+
+        val notificationManager =
+            applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        val builder = NotificationCompat.Builder(applicationContext, NOTIFICATION_CHANNEL)
+            .setSmallIcon(R.drawable.ic_baseline_add_24)
+            .setContentTitle("CVE Alert")
+            .setContentText("$numberOfNewCVEs new CVEs!")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true)
+
+        val channel =
+            NotificationChannel(NOTIFICATION_CHANNEL, NOTIFICATION_NAME, IMPORTANCE_DEFAULT)
+
+        notificationManager.createNotificationChannel(channel)
+
+        notificationManager.notify(1, builder.build())
+    }
 }

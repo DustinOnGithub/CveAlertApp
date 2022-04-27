@@ -106,4 +106,8 @@ class MyRepository(
     suspend fun deleteCveWherePublishedDateSAfter(time: String) {
         cveDao.deleteCveWherePublishedDateSAfter(time)
     }
+
+    fun countCVEs(): Int {
+        return cveDao.count()
+    }
 }

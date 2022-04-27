@@ -47,4 +47,9 @@ interface CveDao {
                 "WHERE cpe.string = :cpeString"
     )
     fun getAllWithCpe(cpeString: String): LiveData<List<Cve>>
+
+    @Query(
+        "SELECT count(*) FROM cve"
+    )
+    fun count(): Int
 }
