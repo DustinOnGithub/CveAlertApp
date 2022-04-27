@@ -191,8 +191,6 @@ class AddOrEditSubscriptionFragment : Fragment() {
             myViewModelDb.updateSubscription(subscription)
             myRepository.deleteCveWithSubscriptionSync(subscription)
 
-            //todo: delete no more used cves from DB if cpe-string is edit
-
         } else {
 
             subscription.id = myRepository.insertSubscriptionSync(subscription)
