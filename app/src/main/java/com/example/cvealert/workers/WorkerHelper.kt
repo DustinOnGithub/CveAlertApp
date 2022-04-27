@@ -8,14 +8,11 @@ import com.example.cvealert.api.service.NvdServiceInstance
 import com.example.cvealert.database.MyDatabase
 import com.example.cvealert.database.MyRepository
 import com.example.cvealert.database.cve.Cve
-import com.example.cvealert.database.setting.Setting
 import com.example.cvealert.util.Constants
 import java.text.SimpleDateFormat
 import java.util.*
 
 class WorkerHelper(val applicationContext: Context, private val TAG: String) {
-
-    private var setting: Setting? = null
 
     private var myRepository: MyRepository = MyRepository(
         MyDatabase.getDatabase(applicationContext).settingDao(),
@@ -23,11 +20,14 @@ class WorkerHelper(val applicationContext: Context, private val TAG: String) {
         MyDatabase.getDatabase(applicationContext).cveDao()
     )
 
-    private fun getSetting(): Setting? {
-        if (setting == null) {
-            setting = myRepository.getSettingSyn()
+    private fun getApiKey(): String? {
+        val setting = myRepository.getSettingSyn()
+
+        if (setting == null || setting.apiKey.isNullOrBlank()) {
+            return null
         }
-        return setting
+
+        return setting.apiKey
     }
 
     fun deleteOldCVEs() {
@@ -57,7 +57,7 @@ class WorkerHelper(val applicationContext: Context, private val TAG: String) {
 
         val getCvesCall = NvdServiceInstance.service.getCVEs(
             resultsPerPage = 100,
-            apiKey = getSetting()?.apiKey,
+            apiKey = getApiKey(),
             cpeMatchString = cpeString,
             pubStartDate = Constants.getLastCVEDateTime(),
             pubEndDate = generatePubEndDate(),
