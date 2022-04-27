@@ -179,19 +179,22 @@ class AddOrEditSubscriptionFragment : Fragment() {
 
         //todo: check for duplications or already included subscription
 
+        val myRepository = MyRepository(
+            MyDatabase.getDatabase(requireContext()).settingDao(),
+            MyDatabase.getDatabase(requireContext()).subscriptionDao(),
+            MyDatabase.getDatabase(requireContext()).cveDao()
+        )
+
         if (isEditSubscription()) {
             subscription.id = args.selectedSubscription!!.id
             toastText = "Subscription saved!"
             myViewModelDb.updateSubscription(subscription)
+            myRepository.deleteCveWithSubscriptionSync(subscription)
 
             //todo: delete no more used cves from DB if cpe-string is edit
 
         } else {
-            val myRepository = MyRepository(
-                MyDatabase.getDatabase(requireContext()).settingDao(),
-                MyDatabase.getDatabase(requireContext()).subscriptionDao(),
-                MyDatabase.getDatabase(requireContext()).cveDao()
-            )
+
             subscription.id = myRepository.insertSubscriptionSync(subscription)
 
             toastText = if (subscription.id == -1) {

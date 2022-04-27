@@ -34,6 +34,10 @@ class MyRepository(
         cveDao.delete(cve)
     }
 
+    fun deleteCveWithSubscriptionSync(subscription: Subscription) {
+        cveDao.deleteCveWithSubscription(subscription.id)
+    }
+
     suspend fun insertSetting(setting: Setting) {
         settingDao.insert(setting)
     }
@@ -42,7 +46,7 @@ class MyRepository(
         settingDao.updateSetting(setting)
     }
 
-    fun getSettingSyn(): Setting {
+    fun getSettingSyn(): Setting? {
         return settingDao.getSync()
     }
 
