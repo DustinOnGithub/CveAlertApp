@@ -27,7 +27,7 @@ class TimelineFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         myViewModelDb = ViewModelProvider(this)[MyViewModelDb::class.java]
-        myViewModelDb.getAllCves.observe(viewLifecycleOwner) { cves ->
+        myViewModelDb.selectCVEwithSubscription.observe(viewLifecycleOwner) { cves ->
             adapter.setData(cves)
         }
 

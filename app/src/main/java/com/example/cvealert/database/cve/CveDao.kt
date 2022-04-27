@@ -3,6 +3,7 @@ package com.example.cvealert.database.cve
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.cvealert.database.cpe.Cpe
+import com.example.cvealert.database.relation.CveWithSubscription
 
 @Dao
 interface CveDao {
@@ -52,4 +53,9 @@ interface CveDao {
         "SELECT count(*) FROM cve"
     )
     fun count(): Int
+
+    @Query(
+        "SELECT * from cve INNER JOIN subscription on subscription_id = id"
+    )
+    fun selectCVEwithSubscription(): LiveData<List<CveWithSubscription>>
 }

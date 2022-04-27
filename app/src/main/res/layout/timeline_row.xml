@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
         <TextView
@@ -31,6 +31,14 @@
             app:layout_constraintStart_toEndOf="@+id/cveStringTv"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="9.3" />
+
+        <TextView
+            android:id="@+id/cpeString"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/cveStringTv"
+            app:layout_constraintTop_toBottomOf="@+id/severityTv"
+            tools:text="cpe:2.3:a:microsoft:internet_explorer:8.0.6001:beta:*:*:*:*:*:* " />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cvealert.Cpe
 import com.example.cvealert.R
-import com.example.cvealert.database.cve.Cve
+import com.example.cvealert.database.relation.CveWithSubscription
+import org.w3c.dom.Text
 
 class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.TimelineViewHolder>() {
 
-    private var cveList = emptyList<Cve>()
+    private var cveList = emptyList<CveWithSubscription>()
 
     class TimelineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -24,11 +26,13 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.TimelineViewHolder>
 
     override fun onBindViewHolder(holder: TimelineViewHolder, position: Int) {
 
-        val currentCVE = cveList[position]
+        val item = cveList[position]
 
-        holder.itemView.findViewById<TextView>(R.id.cveStringTv).text = currentCVE.cve
+        holder.itemView.findViewById<TextView>(R.id.cveStringTv).text = item.cve.cve
         holder.itemView.findViewById<TextView>(R.id.severityTv).text =
-            currentCVE.cvssV3Score.toString()
+            item.cve.cvssV3Score.toString()
+        holder.itemView.findViewById<TextView>(R.id.cpeString).text =
+            Cpe.generateStringFromSubscription(item.subscription)
     }
 
     override fun getItemCount(): Int {
@@ -37,7 +41,7 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.TimelineViewHolder>
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(
-        cveList: List<Cve>,
+        cveList: List<CveWithSubscription>,
     ) {
         this.cveList = cveList
         notifyDataSetChanged()
