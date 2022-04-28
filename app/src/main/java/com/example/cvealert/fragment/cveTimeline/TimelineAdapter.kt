@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvealert.Cpe
 import com.example.cvealert.R
 import com.example.cvealert.database.relation.CveWithSubscription
+import com.example.cvealert.fragment.subscription.SubscriptionsFragmentDirections
 import org.w3c.dom.Text
 
 class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.TimelineViewHolder>() {
@@ -33,6 +35,14 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.TimelineViewHolder>
             item.cve.cvssV3Score.toString()
         holder.itemView.findViewById<TextView>(R.id.cpeString).text =
             Cpe.generateStringFromSubscription(item.subscription)
+
+        holder.itemView.setOnClickListener {
+            val action =
+                TimelineFragmentDirections.actionTimelineFragmentToCveDetailFragment(
+                    item
+                )
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

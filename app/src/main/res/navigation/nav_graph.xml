@@ -29,7 +29,15 @@
         android:id="@+id/cveDetailFragment"
         android:name="com.example.cvealert.fragment.cveTimeline.CveDetailFragment"
         android:label="fragment_cve_detail"
-        tools:layout="@layout/fragment_cve_detail" />
+        tools:layout="@layout/fragment_cve_detail">
+        <argument
+            android:name="selectedCVE"
+            app:argType="com.example.cvealert.database.relation.CveWithSubscription"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_cveDetailFragment_to_timelineFragment"
+            app:destination="@id/timelineFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addSubscriptionFragment"
         android:name="com.example.cvealert.fragment.subscription.AddOrEditSubscriptionFragment"
