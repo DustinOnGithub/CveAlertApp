@@ -1,11 +1,14 @@
 package com.example.cvealert.database.cve
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.cvealert.database.subscription.Subscription
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(
     tableName = "cve",
     indices = [Index(value = ["subscription_id"], unique = false)],
@@ -29,4 +32,4 @@ data class Cve(
     var publishedDate: String,
     var lastModifiedDate: String,
     var subscription_id: Int
-)
+) : Parcelable
