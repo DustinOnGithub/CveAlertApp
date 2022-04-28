@@ -41,6 +41,7 @@ interface CveDao {
     @Query("SELECT * FROM cve")
     fun getAll(): LiveData<List<Cve>>
 
+    @Transaction
     @Query(
         "SELECT * " +
                 "FROM cve " +
@@ -54,6 +55,7 @@ interface CveDao {
     )
     fun count(): Int
 
+    @Transaction
     @Query(
         "SELECT * from cve INNER JOIN subscription on subscription_id = id"
     )

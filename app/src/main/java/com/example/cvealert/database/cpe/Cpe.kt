@@ -10,7 +10,10 @@ import com.example.cvealert.database.cve.Cve
 //todo: add a foreign key
 @Entity(
     tableName = "cpe",
-    indices = [Index(value = ["string", "vulnerable", "cve"], unique = true)],
+    indices = [
+        Index(value = ["string", "vulnerable", "cve"], unique = true),
+        Index(value = ["cve"], unique = false)
+    ],
     foreignKeys = arrayOf(
         ForeignKey(
             entity = Cve::class,

@@ -2,11 +2,13 @@ package com.example.cvealert.database.cve
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.cvealert.database.subscription.Subscription
 
 @Entity(
     tableName = "cve",
+    indices = [Index(value = ["subscription_id"], unique = false)],
     foreignKeys = [ForeignKey(
         entity = Subscription::class,
         parentColumns = arrayOf("id"),
