@@ -16,9 +16,21 @@
 
 
         <TextView
+            android:id="@+id/vendorTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cveStringTv"
+            tools:text="Microsoft" />
+
+        <TextView
             android:id="@+id/cveStringTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="CVE-2022-23258" />
@@ -27,18 +39,32 @@
             android:id="@+id/severityTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cveStringTv"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="9.3" />
 
         <TextView
-            android:id="@+id/cpeString"
+            android:id="@+id/productTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/cveStringTv"
-            app:layout_constraintTop_toBottomOf="@+id/severityTv"
-            tools:text="cpe:2.3:a:microsoft:internet_explorer:8.0.6001:beta:*:*:*:*:*:* " />
+            android:layout_marginStart="8dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/vendorTV"
+            app:layout_constraintTop_toTopOf="@+id/vendorTV"
+            tools:text="Windows" />
+
+        <TextView
+            android:id="@+id/cvssTypeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/severityTv"
+            app:layout_constraintTop_toTopOf="@+id/severityTv"
+            tools:text="CVSS-v3" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -20,10 +20,10 @@ class MyCves : Cves() {
                 cve = getCveId(it),
                 description = getDescription(it.cve),
                 cvssV2String = getCvssV2String(it.impact),
-                cvssV2Score = getCvssV2Score(it.impact).toFloat(),
+                cvssV2Score = getCvssV2Score(it.impact),
                 cvssV2Severity = getCvssV2Severity(it.impact),
                 cvssV3String = getCvssV3String(it.impact),
-                cvssV3Score = getCvssV3Score(it.impact).toFloat(),
+                cvssV3Score = getCvssV3Score(it.impact),
                 cvssV3Severity = getCvssV3Severity(it.impact),
                 publishedDate = it.publishedDate,
                 lastModifiedDate = it.lastModifiedDate,
@@ -104,18 +104,12 @@ class MyCves : Cves() {
         return impact.baseMetricV2?.severity ?: ""
     }
 
-    /**
-     * score 100.0 means that no data is available
-     */
-    private fun getCvssV3Score(impact: Impact): Double {
-        return impact.baseMetricV3?.cvssV3?.baseScore ?: 100.0
+    private fun getCvssV3Score(impact: Impact): Float {
+        return impact.baseMetricV3?.cvssV3?.baseScore?.toFloat() ?: Constants.NO_CVSS_SCORE
     }
 
-    /**
-     * score 100.0 means that no data is available
-     */
-    private fun getCvssV2Score(impact: Impact): Double {
-        return impact.baseMetricV2?.cvssV2?.baseScore ?: 100.0
+    private fun getCvssV2Score(impact: Impact): Float {
+        return impact.baseMetricV2?.cvssV2?.baseScore?.toFloat() ?: Constants.NO_CVSS_SCORE
     }
 
     private fun getCvssV3String(impact: Impact): String {

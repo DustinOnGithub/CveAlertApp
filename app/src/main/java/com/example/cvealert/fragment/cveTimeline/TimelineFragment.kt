@@ -28,7 +28,7 @@ class TimelineFragment : Fragment() {
 
         myViewModelDb = ViewModelProvider(this)[MyViewModelDb::class.java]
         myViewModelDb.selectCVEwithSubscription.observe(viewLifecycleOwner) { cves ->
-            adapter.setData(cves)
+            adapter.setData(cves, requireContext())
         }
 
         //todo: update timeline on swipe down
