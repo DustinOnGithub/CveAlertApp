@@ -126,7 +126,7 @@ class WorkerHelper(val applicationContext: Context, private val TAG: String) {
             applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
         val builder = NotificationCompat.Builder(applicationContext, NOTIFICATION_CHANNEL)
-            .setSmallIcon(R.drawable.ic_baseline_add_24)
+            .setSmallIcon(R.drawable.ic_baseline_bug_report_24)
             .setContentTitle("CVE Alert")
             .setContentText("$numberOfNewCVEs new CVEs!")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
