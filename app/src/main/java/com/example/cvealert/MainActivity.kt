@@ -29,20 +29,38 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun enqueueWorkers() {
+        enqueueGetAndStoreWorker()
+        enqueueDeleteOldWorker()
+    }
+
+    private fun enqueueGetAndStoreWorker() {
         val workManager = WorkManager.getInstance(applicationContext)
+        val workStatus = workManager.getWorkInfosByTag(GetAndStoreWorker.TAG).get()
         val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED)
+
         val getAndStoreWorker = PeriodicWorkRequestBuilder<GetAndStoreWorker>(
             Constants.WORKER_REPEAT_INTERVAL, TimeUnit.MINUTES,
             flexTimeInterval = 5, TimeUnit.MINUTES
         )
             .setConstraints(constraints.build())
+            .addTag(GetAndStoreWorker.TAG)
+
+        if (workStatus.count() == 0) {
+            workManager.enqueue(getAndStoreWorker.build())
+        }
+    }
+
+    private fun enqueueDeleteOldWorker() {
+        val workManager = WorkManager.getInstance(applicationContext)
+        val workStatus = workManager.getWorkInfosByTag(DeleteOldWorker.TAG).get()
 
         val deleteOldWorker = PeriodicWorkRequestBuilder<DeleteOldWorker>(
             1, TimeUnit.DAYS,
             flexTimeInterval = 2, TimeUnit.HOURS
-        )
+        ).addTag(DeleteOldWorker.TAG)
 
-        workManager.enqueue(getAndStoreWorker.build())
-        workManager.enqueue(deleteOldWorker.build())
+        if (workStatus.count() == 0) {
+            workManager.enqueue(deleteOldWorker.build())
+        }
     }
 }

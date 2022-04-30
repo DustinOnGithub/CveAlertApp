@@ -8,7 +8,9 @@ import androidx.work.WorkerParameters
 class GetAndStoreCVEsByCPEWorker(context: Context, params: WorkerParameters) :
     Worker(context, params) {
 
-    private val TAG = GetAndStoreCVEsByCPEWorker::class.simpleName
+    companion object {
+        private val TAG = GetAndStoreCVEsByCPEWorker::class.simpleName
+    }
 
     override fun doWork(): Result {
 
@@ -29,9 +31,11 @@ class GetAndStoreCVEsByCPEWorker(context: Context, params: WorkerParameters) :
                 inputData.getString("setting_id")!!.toInt()
             )
         ) {
+            Log.i(TAG, "success")
             return Result.success()
         }
 
+        Log.i(TAG, "failure")
         return Result.failure()
     }
 
