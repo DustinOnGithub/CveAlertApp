@@ -3,7 +3,7 @@ package com.example.cvealert.database.cve
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.cvealert.database.cpe.Cpe
-import com.example.cvealert.database.relation.CveWithSubscription
+import com.example.cvealert.database.relation.CveWithSubscriptionAndCPEs
 
 @Dao
 interface CveDao {
@@ -59,5 +59,5 @@ interface CveDao {
     @Query(
         "SELECT * from cve INNER JOIN subscription on subscription_id = id ORDER BY cve.publishedDate DESC"
     )
-    fun selectCVEwithSubscription(): LiveData<List<CveWithSubscription>>
+    fun selectCVEwithSubscription(): LiveData<List<CveWithSubscriptionAndCPEs>>
 }

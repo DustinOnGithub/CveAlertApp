@@ -12,12 +12,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvealert.R
 import com.example.cvealert.database.cve.Cve
-import com.example.cvealert.database.relation.CveWithSubscription
+import com.example.cvealert.database.relation.CveWithSubscriptionAndCPEs
 import com.example.cvealert.util.Constants
 
 class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.TimelineViewHolder>() {
 
-    private var cveList = emptyList<CveWithSubscription>()
+    private var cveList = emptyList<CveWithSubscriptionAndCPEs>()
     private lateinit var context: Context
 
     class TimelineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -102,10 +102,10 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.TimelineViewHolder>
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(
-        cveList: List<CveWithSubscription>,
+        cveListAndCPEs: List<CveWithSubscriptionAndCPEs>,
         ctx: Context
     ) {
-        this.cveList = cveList
+        this.cveList = cveListAndCPEs
         notifyDataSetChanged()
         context = ctx
     }

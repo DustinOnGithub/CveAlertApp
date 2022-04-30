@@ -1,13 +1,15 @@
 package com.example.cvealert.database.cpe
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.cvealert.database.cve.Cve
+import kotlinx.parcelize.Parcelize
 
 
-//todo: add a foreign key
+@Parcelize
 @Entity(
     tableName = "cpe",
     indices = [
@@ -29,4 +31,4 @@ data class Cpe(
     var string: String,
     var vulnerable: Boolean,
     var cve: String
-)
+) : Parcelable

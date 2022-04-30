@@ -82,17 +82,15 @@ class MyCves : Cves() {
     ) {
 
         cpeMatches?.forEach { cpeMatch ->
-            //todo: add also not vulnerable (think about it)
-            if (cpeMatch.vulnerable) {
-                generatedCPEs.add(
-                    Cpe(
-                        id = 0,
-                        string = cpeMatch.cpe23Uri,
-                        vulnerable = cpeMatch.vulnerable,
-                        cve = getCveId(cveItem)
-                    )
+            generatedCPEs.add(
+                Cpe(
+                    id = 0,
+                    string = cpeMatch.cpe23Uri,
+                    vulnerable = cpeMatch.vulnerable,
+                    cve = getCveId(cveItem)
                 )
-            }
+            )
+
         }
     }
 

@@ -27,11 +27,9 @@ class TimelineFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         myViewModelDb = ViewModelProvider(this)[MyViewModelDb::class.java]
-        myViewModelDb.selectCVEwithSubscription.observe(viewLifecycleOwner) { cves ->
+        myViewModelDb.selectCVEwithSubscriptionAndCPEs.observe(viewLifecycleOwner) { cves ->
             adapter.setData(cves, requireContext())
         }
-
-        //todo: update timeline on swipe down
 
         return view
     }

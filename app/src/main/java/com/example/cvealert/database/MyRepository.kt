@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import com.example.cvealert.database.cpe.Cpe
 import com.example.cvealert.database.cve.Cve
 import com.example.cvealert.database.cve.CveDao
-import com.example.cvealert.database.relation.CveWithSubscription
+import com.example.cvealert.database.relation.CveWithSubscriptionAndCPEs
 import com.example.cvealert.database.setting.Setting
 import com.example.cvealert.database.setting.SettingDao
 import com.example.cvealert.database.subscription.Subscription
@@ -22,7 +22,7 @@ class MyRepository(
     val getAllSubscription: LiveData<List<Subscription>> = subscriptionDao.getAll()
     val getAllActiveSubscriptions = subscriptionDao.getAllActive()
     val getAllCves: LiveData<List<Cve>> = cveDao.getAll()
-    val selectCVEwithSubscription: LiveData<List<CveWithSubscription>> =
+    val selectCVEwithSubscriptionAndCPEs: LiveData<List<CveWithSubscriptionAndCPEs>> =
         cveDao.selectCVEwithSubscription()
 
     suspend fun insertCve(cve: Cve) {

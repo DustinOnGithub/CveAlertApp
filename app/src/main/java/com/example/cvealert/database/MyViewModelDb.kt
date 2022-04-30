@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.cvealert.database.cpe.Cpe
 import com.example.cvealert.database.cve.Cve
-import com.example.cvealert.database.relation.CveWithSubscription
+import com.example.cvealert.database.relation.CveWithSubscriptionAndCPEs
 import com.example.cvealert.database.setting.Setting
 import com.example.cvealert.database.subscription.Subscription
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +17,7 @@ class MyViewModelDb(application: Application) : AndroidViewModel(application) {
     val getSetting: LiveData<Setting>
     val getAllSubscriptions: LiveData<List<Subscription>>
     val getAllCves: LiveData<List<Cve>>
-    val selectCVEwithSubscription: LiveData<List<CveWithSubscription>>
+    val selectCVEwithSubscriptionAndCPEs: LiveData<List<CveWithSubscriptionAndCPEs>>
 
     private val repository: MyRepository = MyRepository(
         MyDatabase.getDatabase(application).settingDao(),
@@ -29,7 +29,7 @@ class MyViewModelDb(application: Application) : AndroidViewModel(application) {
         getSetting = repository.getSetting
         getAllSubscriptions = repository.getAllSubscription
         getAllCves = repository.getAllCves
-        selectCVEwithSubscription = repository.selectCVEwithSubscription
+        selectCVEwithSubscriptionAndCPEs = repository.selectCVEwithSubscriptionAndCPEs
     }
 
     fun insertCve(cve: Cve) {

@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_cve_detail">
         <argument
             android:name="selectedCVE"
-            app:argType="com.example.cvealert.database.relation.CveWithSubscription"
+            app:argType="com.example.cvealert.database.relation.CveWithSubscriptionAndCPEs"
             app:nullable="false" />
         <action
             android:id="@+id/action_cveDetailFragment_to_timelineFragment"
