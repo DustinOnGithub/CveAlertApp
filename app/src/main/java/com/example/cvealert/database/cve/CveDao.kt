@@ -57,7 +57,7 @@ interface CveDao {
 
     @Transaction
     @Query(
-        "SELECT * from cve INNER JOIN subscription on subscription_id = id"
+        "SELECT * from cve INNER JOIN subscription on subscription_id = id ORDER BY cve.publishedDate DESC"
     )
     fun selectCVEwithSubscription(): LiveData<List<CveWithSubscription>>
 }
