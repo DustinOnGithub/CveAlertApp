@@ -65,6 +65,24 @@
             app:layout_constraintTop_toTopOf="@+id/severityTv"
             tools:text="CVSS-v3" />
 
+        <TextView
+            android:id="@+id/descriptionShortTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/vendorTV"
+            app:layout_constraintTop_toBottomOf="@+id/vendorTV" />
+
+        <TextView
+            android:id="@+id/publishedTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionShortTV"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionShortTV" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

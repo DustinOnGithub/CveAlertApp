@@ -34,9 +34,17 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.TimelineViewHolder>
         val item = cveList[position]
         val view = holder.itemView
 
+        var shortDescription = item.cve.description
+        val shortDescriptionLength = 40
+        if (shortDescription.length > shortDescriptionLength) {
+            shortDescription = shortDescription.substring(0, shortDescriptionLength) + "..."
+        }
+
         view.findViewById<TextView>(R.id.cveStringTv).text = item.cve.cve
         view.findViewById<TextView>(R.id.vendorTV).text = item.subscription.vendor
         view.findViewById<TextView>(R.id.productTV).text = item.subscription.product
+        view.findViewById<TextView>(R.id.publishedTV).text = item.cve.publishedDate
+        view.findViewById<TextView>(R.id.descriptionShortTV).text = shortDescription
         setCVSS(view, item.cve)
 
         view.setOnClickListener {
