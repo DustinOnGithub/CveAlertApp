@@ -4,7 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="AddSubscription">Add Subscription</string>
     <string name="settings">Settings</string>
-    <string name="subscriptions">Subsciptions</string>
+    <string name="subscriptions">Subscriptions</string>
     <string name="timeline">CVEs</string>
     <string name="save">Save</string>
     <string name="pushUpNotification">Push-up notification</string>
@@ -31,7 +31,7 @@
     <string name="published">Published:</string>
     <string name="last_modified">Last Modified:</string>
     <string name="description">Description:</string>
-    <string name="more_information_on_nvd">Visit nvd.nist.gov for more inforamtions</string>
+    <string name="more_information_on_nvd">Visit nvd.nist.gov for more information</string>
     <string name="subscription">Subscription:</string>
     <string name="nvd_api_key">NVD-API-Key</string>
     <string name="you_dont_need_an_api_key">You do not need an API Key. An API Key allows you more request per minute. You can request an API on the NVD webpage.</string>
@@ -40,6 +40,7 @@
     <string name="delete_subscription">delete Subscription</string>
     <string name="enable_notifications">enable notifications</string>
     <string name="activate_subscription">activate subscription</string>
+    <string name="cpes">CPEs:</string>
 
     <string-array name="partOptions">
         <item>@string/undefined</item>
