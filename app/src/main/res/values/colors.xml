@@ -11,4 +11,5 @@
     <color name="cvssHigh">#FA5926</color>
     <color name="cvssMedium">#F49203</color>
     <color name="cvssLow">#FFEB3B</color>
+    <color name="myRed">#E31414</color>
 </resources>
