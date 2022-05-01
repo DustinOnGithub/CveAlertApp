@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +33,14 @@ class SubscriptionsFragment : Fragment() {
 
         myViewModelDb = ViewModelProvider(this)[MyViewModelDb::class.java]
         myViewModelDb.getAllSubscriptions.observe(viewLifecycleOwner) { subscriptions ->
+            if (subscriptions.isEmpty()) {
+                view.findViewById<TextView>(R.id.noSubscriptionsAvailableTV).visibility =
+                    View.VISIBLE
+            } else {
+                view.findViewById<TextView>(R.id.noSubscriptionsAvailableTV).visibility =
+                    View.INVISIBLE
+            }
+
             adapter.setData(subscriptions, myViewModelDb, requireContext())
         }
 
