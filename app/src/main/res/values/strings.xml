@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CveAlert</string>
+    <string name="app_name">CVE Alert</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="AddSubscription">Add Subscription</string>
@@ -35,7 +35,7 @@
     <string name="subscription">Subscription:</string>
     <string name="nvd_api_key">NVD-API-Key</string>
     <string name="you_dont_need_an_api_key">You do not need an API Key. An API Key allows you more request per minute. You can request an API on the NVD webpage.</string>
-    <string name="please_add_your_first_subscription">PLease add your first subscription!</string>
+    <string name="please_add_your_first_subscription">Please add your first subscription!</string>
     <string name="no_data">No active subscriptions or no new CVEs found for your subscriptions.</string>
     <string name="delete_subscription">delete Subscription</string>
     <string name="enable_notifications">enable notifications</string>
