@@ -40,6 +40,9 @@ class CveDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.cveDetailVendorTv).text = subscription.vendor
         view.findViewById<TextView>(R.id.cveDetailproductTv).text = subscription.product
 
+        fillCPElist(view, args.selectedCVE.CPEs)
+
+
         view.findViewById<TextView>(R.id.cvssV3TV).setTextColor(
             ContextCompat.getColor(
                 requireContext(),
@@ -66,5 +69,15 @@ class CveDetailFragment : Fragment() {
         )
 
         return view
+    }
+
+    private fun fillCPElist(view: View, cpes: List<com.example.cvealert.database.cpe.Cpe>) {
+
+        var text = ""
+        cpes.forEach { cpe ->
+            text += (if (cpe.vulnerable) "vulnerable: " else "") + (cpe.string + "\n")
+        }
+
+        view.findViewById<TextView>(R.id.cpeListTv).text = text
     }
 }

@@ -30,7 +30,7 @@
                 tools:text="CVE-2021-21143" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
+                android:id="@+id/cvssConstraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -57,7 +57,7 @@
                     android:textSize="24sp"
                     app:layout_constraintStart_toEndOf="@+id/cveDetail_cvssV2Tv"
                     app:layout_constraintTop_toTopOf="@+id/cveDetail_cvssV2Tv"
-                    tools:text="6.8 /10" />
+                    tools:text="6.8" />
 
                 <TextView
                     android:id="@+id/cveDetail_cvssV3Tv"
@@ -70,33 +70,68 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="CVSS v3 Base vector:"
+                    app:layout_constraintStart_toStartOf="@+id/cvssV2StringTv"
+                    app:layout_constraintTop_toBottomOf="@+id/cvssV2StringTv" />
+
+                <TextView
                     android:id="@+id/cvssV3TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textView11"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="8.8/10" />
+                    tools:text="8.8" />
 
                 <TextView
                     android:id="@+id/cvssV2StringTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@+id/cveDetail_cvssV2Tv"
-                    app:layout_constraintTop_toBottomOf="@+id/cvssV2Tv"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6"
                     tools:text="AV:N/AC:M/Au:N/C:P/I:P/A:P" />
 
                 <TextView
                     android:id="@+id/cvssV3String"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@+id/cvssV2StringTv"
-                    app:layout_constraintTop_toBottomOf="@+id/cvssV2StringTv"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7"
                     tools:text="CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:N" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="CVSS v2 Base vector:"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvssV2Tv" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="/10"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cvssV2Tv"
+                    app:layout_constraintStart_toEndOf="@+id/cvssV2Tv"
+                    app:layout_constraintTop_toTopOf="@+id/cvssV2Tv" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="/10"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/cvssV3TV" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -104,7 +139,7 @@
                 android:id="@+id/subscriptionStringTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="32dp"
                 app:layout_constraintStart_toEndOf="@+id/subscriptionCPETv"
                 app:layout_constraintTop_toTopOf="@+id/subscriptionCPETv"
                 tools:text="cpe:2.3:a:microsoft:edge:*:*:*:*:*:*:*:*" />
@@ -113,26 +148,26 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:text="Published:"
-                app:layout_constraintStart_toStartOf="@+id/textView9"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                app:layout_constraintStart_toStartOf="@+id/subscriptionCPETv"
+                app:layout_constraintTop_toBottomOf="@+id/subscriptionCPETv" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:text="Last Modified:"
-                app:layout_constraintStart_toStartOf="@+id/subscriptionCPETv"
-                app:layout_constraintTop_toBottomOf="@+id/subscriptionCPETv" />
+                app:layout_constraintStart_toStartOf="@+id/textView8"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <TextView
                 android:id="@+id/lastModifiedTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                app:layout_constraintStart_toEndOf="@+id/textView9"
+                android:layout_marginTop="0dp"
+                app:layout_constraintStart_toStartOf="@+id/publishedDateTv"
                 app:layout_constraintTop_toTopOf="@+id/textView9"
                 tools:text="2022-02-01T21:04Z" />
 
@@ -140,21 +175,28 @@
                 android:id="@+id/publishedDateTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintStart_toStartOf="@+id/subscriptionStringTv"
                 app:layout_constraintTop_toTopOf="@+id/textView8"
                 tools:text="2022-01-25T22:15Z" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Description:"
+                app:layout_constraintStart_toStartOf="@+id/cvssConstraintLayout"
+                app:layout_constraintTop_toBottomOf="@+id/cvssConstraintLayout" />
 
             <TextView
                 android:id="@+id/cveDescriptionTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:text="TextView"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-                app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintEnd_toEndOf="@+id/cvssConstraintLayout"
+                app:layout_constraintStart_toStartOf="@+id/cvssConstraintLayout"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
                 tools:text=" Heap buffer overflow in Extensions in Google Chrome prior to 88.0.4324.146 allowed an attacker who convinced a user to install a malicious extension to potentially exploit heap corruption via a crafted Chrome Extension. " />
 
             <Button
@@ -166,17 +208,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/publishedDateTv" />
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
             <TextView
                 android:id="@+id/cveDetailVendorTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="TextView"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/cveDescriptionTV"
-                app:layout_constraintTop_toBottomOf="@+id/cveDescriptionTV"
+                app:layout_constraintTop_toBottomOf="@+id/SubscriptionTV"
                 tools:text="Microsoft" />
 
             <TextView
@@ -194,22 +235,42 @@
                 android:id="@+id/subscriptionCPETv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:text="Subscription:"
-                app:layout_constraintStart_toStartOf="@+id/cveDetailVendorTv"
-                app:layout_constraintTop_toBottomOf="@+id/cveDetailVendorTv" />
+                app:layout_constraintStart_toStartOf="@+id/cpeListTv"
+                app:layout_constraintTop_toBottomOf="@+id/cpeListTv" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
+                android:paddingBottom="20dp"
                 android:text="This product uses the NVD API but is not endorsed or certified by the NVD."
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/cveDescriptionTV"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/cveDescriptionTV"
-                app:layout_constraintTop_toBottomOf="@+id/linkToNvdBt"
-                android:paddingBottom="20dp" />
+                app:layout_constraintTop_toBottomOf="@+id/linkToNvdBt" />
+
+            <TextView
+                android:id="@+id/SubscriptionTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Subscription:"
+                app:layout_constraintStart_toStartOf="@+id/cveDescriptionTV"
+                app:layout_constraintTop_toBottomOf="@+id/cveDescriptionTV" />
+
+            <TextView
+                android:id="@+id/cpeListTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:singleLine="false"
+                android:text="vulnerable: cpe string...\n cpe string..."
+                app:layout_constraintStart_toStartOf="@+id/cveDetailVendorTv"
+                app:layout_constraintTop_toBottomOf="@+id/cveDetailVendorTv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
