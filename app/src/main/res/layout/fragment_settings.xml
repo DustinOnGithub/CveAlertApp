@@ -11,10 +11,12 @@
 
     <EditText
         android:id="@+id/apiKeyView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="API-key"
+        android:hint="NVD-API-Key"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColorHint="#757575"
@@ -27,10 +29,36 @@
         android:id="@+id/saveSettingsBtn"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/not_an_nvd_application"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="You do not need an API Key. An API Key allows you more request per minute. You can request an API on the NVD webpage."
+        app:layout_constraintEnd_toEndOf="@+id/apiKeyView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/apiKeyView"
+        app:layout_constraintTop_toBottomOf="@+id/apiKeyView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
