@@ -38,8 +38,6 @@ class CveDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.lastModifiedTv).text = cve.lastModifiedDate
         view.findViewById<TextView>(R.id.subscriptionStringTv).text =
             Cpe.generateStringFromSubscription(subscription)
-        view.findViewById<TextView>(R.id.cveDetailVendorTv).text = subscription.vendor
-        view.findViewById<TextView>(R.id.cveDetailProductTv).text = subscription.product
 
         fillCPElist(view, args.selectedCVE.CPEs)
 
@@ -83,8 +81,21 @@ class CveDetailFragment : Fragment() {
     private fun fillCPElist(view: View, cpes: List<com.example.cvealert.database.cpe.Cpe>) {
 
         var text = ""
+        var vulnerable = ""
+        var runningOn = ""
+
         cpes.forEach { cpe ->
-            text += (if (cpe.vulnerable) "vulnerable: " else "") + (cpe.string + "\n")
+
+            if (cpe.vulnerable) {
+                vulnerable += "\n\t" + cpe.string
+            } else {
+                runningOn += "\n\t" + cpe.string
+            }
+        }
+
+        text += "Vulnerable:" + vulnerable
+        if (runningOn.count() > 0) {
+            text += "\nRunning on/with: " + runningOn
         }
 
         view.findViewById<TextView>(R.id.cpeListTv).text = text
