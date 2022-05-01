@@ -20,21 +20,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
             android:text="@string/part"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/partSpinner"
+            app:layout_constraintStart_toStartOf="@+id/vendorET"
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.widget.Spinner
             android:id="@+id/partSpinner"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:contentDescription="@string/selectPart"
             android:minWidth="10dp"
             android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:popupTheme="@style/AppTheme.PopupOverlay"
+            app:layout_constraintEnd_toEndOf="@+id/vendorET"
+            app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="@+id/textView">
 
         </android.widget.Spinner>
