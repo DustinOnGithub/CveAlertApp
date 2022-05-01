@@ -14,6 +14,7 @@
     <string name="operatingSystem">Operating System</string>
     <string name="application">Application</string>
     <string name="hardware">Hardware</string>
+    <string name="not_an_nvd_application">This product uses the NVD API but is not endorsed or certified by the NVD.</string>
 
     <string-array name="partOptions">
         <item>@string/undefined</item>

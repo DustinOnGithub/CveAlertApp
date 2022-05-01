@@ -197,7 +197,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/cvssConstraintLayout"
                 app:layout_constraintStart_toStartOf="@+id/cvssConstraintLayout"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
-                tools:text=" Heap buffer overflow in Extensions in Google Chrome prior to 88.0.4324.146 allowed an attacker who convinced a user to install a malicious extension to potentially exploit heap corruption via a crafted Chrome Extension. " />
+                tools:text="Heap buffer overflow in Extensions in Google Chrome prior to 88.0.4324.146 allowed an attacker who convinced a user to install a malicious extension to potentially exploit heap corruption via a crafted Chrome Extension. " />
 
             <Button
                 android:id="@+id/linkToNvdBt"
@@ -246,7 +246,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:paddingBottom="20dp"
-                android:text="This product uses the NVD API but is not endorsed or certified by the NVD."
+                android:text="@string/not_an_nvd_application"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/cveDescriptionTV"
                 app:layout_constraintHorizontal_bias="0.0"
