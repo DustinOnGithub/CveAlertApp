@@ -1,154 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/addSubscriptionLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.subscription.AddOrEditSubscriptionFragment">
+    android:layout_height="match_parent">
 
-    <!--    TODO: add back button-->
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addSubscriptionLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
-        android:text="@string/part"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/partSpinner"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:isScrollContainer="true"
+        tools:context=".fragment.subscription.AddOrEditSubscriptionFragment">
 
-    <android.widget.Spinner
-        android:id="@+id/partSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/selectPart"
-        android:minWidth="10dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView">
+        <!--    TODO: add back button-->
 
-    </android.widget.Spinner>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:text="@string/part"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/partSpinner"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/vendorET"
-        android:layout_width="320dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="@string/vendor"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/partSpinner" />
+        <android.widget.Spinner
+            android:id="@+id/partSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/selectPart"
+            android:minWidth="10dp"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView">
 
-    <EditText
-        android:id="@+id/productET"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="@string/product"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintEnd_toEndOf="@+id/vendorET"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/vendorET"
-        app:layout_constraintTop_toBottomOf="@+id/vendorET" />
+        </android.widget.Spinner>
 
-    <EditText
-        android:id="@+id/versionET"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:hint="@string/version"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:textColorHint="#757575"
-        app:layout_constraintEnd_toEndOf="@+id/productET"
-        app:layout_constraintStart_toStartOf="@+id/productET"
-        app:layout_constraintTop_toBottomOf="@+id/productET" />
+        <EditText
+            android:id="@+id/vendorET"
+            android:layout_width="320dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="@string/vendor"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/partSpinner" />
 
-    <EditText
-        android:id="@+id/updateET"
-        android:inputType="text"
-        android:importantForAutofill="no"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:hint="@string/update"
-        android:textColorHint="#757575"
-        app:layout_constraintEnd_toEndOf="@+id/versionET"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="@+id/versionET"
-        app:layout_constraintTop_toBottomOf="@+id/versionET" />
+        <EditText
+            android:id="@+id/productET"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="@string/product"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="@+id/vendorET"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="@+id/vendorET"
+            app:layout_constraintTop_toBottomOf="@+id/vendorET" />
 
-    <EditText
-        android:id="@+id/swEditionET"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:hint="@string/software_edition"
-        android:textColorHint="#757575"
-        app:layout_constraintEnd_toEndOf="@+id/updateET"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/updateET"
-        app:layout_constraintTop_toBottomOf="@+id/updateET" />
+        <EditText
+            android:id="@+id/versionET"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:hint="@string/version"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="@+id/productET"
+            app:layout_constraintStart_toStartOf="@+id/productET"
+            app:layout_constraintTop_toBottomOf="@+id/productET" />
 
-    <CheckBox
-        android:id="@+id/pushUpCB"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:checked="true"
-        android:text="@string/pushUpNotification"
-        app:layout_constraintEnd_toEndOf="@+id/swEditionET"
-        app:layout_constraintStart_toStartOf="@+id/swEditionET"
-        app:layout_constraintTop_toBottomOf="@+id/swEditionET" />
+        <EditText
+            android:id="@+id/updateET"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:hint="@string/update"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="@+id/versionET"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="@+id/versionET"
+            app:layout_constraintTop_toBottomOf="@+id/versionET" />
 
-    <Button
-        android:id="@+id/saveSubscriptionBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/myRed"
-        android:text="@string/save"
-        app:layout_constraintEnd_toEndOf="@+id/cpeStringTV"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toStartOf="@+id/cpeStringTV"
-        app:layout_constraintTop_toBottomOf="@+id/cpeStringTV" />
+        <EditText
+            android:id="@+id/swEditionET"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:hint="@string/software_edition"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="@+id/updateET"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/updateET"
+            app:layout_constraintTop_toBottomOf="@+id/updateET" />
 
-    <CheckBox
-        android:id="@+id/isActiveCB"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:checked="true"
-        android:text="@string/active"
-        app:layout_constraintEnd_toEndOf="@+id/pushUpCB"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="@+id/pushUpCB"
-        app:layout_constraintTop_toBottomOf="@+id/pushUpCB" />
+        <CheckBox
+            android:id="@+id/pushUpCB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:checked="true"
+            android:text="@string/pushUpNotification"
+            app:layout_constraintEnd_toEndOf="@+id/swEditionET"
+            app:layout_constraintStart_toStartOf="@+id/swEditionET"
+            app:layout_constraintTop_toBottomOf="@+id/swEditionET" />
 
-    <TextView
-        android:id="@+id/cpeStringTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/isActiveCB"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="@+id/isActiveCB"
-        app:layout_constraintTop_toBottomOf="@+id/isActiveCB"
-        tools:text="cpe:2.3:a:microsoft:internet_explorer:8.0.6001:beta:*:*:*:*:*:* " />
+        <Button
+            android:id="@+id/saveSubscriptionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/myRed"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cpeStringTV"
+            app:layout_constraintHorizontal_bias="0.522"
+            app:layout_constraintStart_toStartOf="@+id/cpeStringTV"
+            app:layout_constraintTop_toBottomOf="@+id/cpeStringTV" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <CheckBox
+            android:id="@+id/isActiveCB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:checked="true"
+            android:text="@string/active"
+            app:layout_constraintEnd_toEndOf="@+id/pushUpCB"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="@+id/pushUpCB"
+            app:layout_constraintTop_toBottomOf="@+id/pushUpCB" />
+
+        <TextView
+            android:id="@+id/cpeStringTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/isActiveCB"
+            app:layout_constraintStart_toStartOf="@+id/isActiveCB"
+            app:layout_constraintTop_toBottomOf="@+id/isActiveCB"
+            tools:text="cpe:2.3:a:microsoft:internet_explorer:8.0.6001:beta:*:*:*:*:*:* " />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
