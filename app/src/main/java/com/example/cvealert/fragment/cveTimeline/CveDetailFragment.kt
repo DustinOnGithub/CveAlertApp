@@ -1,6 +1,8 @@
 package com.example.cvealert.fragment.cveTimeline
 
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,11 +38,18 @@ class CveDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.lastModifiedTv).text = cve.lastModifiedDate
         view.findViewById<TextView>(R.id.subscriptionStringTv).text =
             Cpe.generateStringFromSubscription(subscription)
-        view.findViewById<Button>(R.id.linkToNvdBt).text = "Link to NVD"
         view.findViewById<TextView>(R.id.cveDetailVendorTv).text = subscription.vendor
         view.findViewById<TextView>(R.id.cveDetailproductTv).text = subscription.product
 
         fillCPElist(view, args.selectedCVE.CPEs)
+
+        view.findViewById<Button>(R.id.linkToNvdBt).setOnClickListener {
+            val viewIntent = Intent(
+                "android.intent.action.VIEW",
+                Uri.parse("https://nvd.nist.gov/vuln/detail/${cve.cve}")
+            )
+            startActivity(viewIntent)
+        }
 
 
         view.findViewById<TextView>(R.id.cvssV3TV).setTextColor(
