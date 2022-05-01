@@ -44,7 +44,7 @@
                     android:id="@+id/cveDetail_cvssV2Tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CVSS v2"
+                    android:text="@string/cvssV2"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
-                    android:text="CVSS v3"
+                    android:text="@string/cvssV3"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toStartOf="@+id/cvssV3TV"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="CVSS v3 Base vector:"
+                    android:text="@string/cvss_v3_base_vector"
                     app:layout_constraintStart_toStartOf="@+id/cvssV2StringTv"
                     app:layout_constraintTop_toBottomOf="@+id/cvssV2StringTv" />
 
@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="CVSS v2 Base vector:"
+                    android:text="@string/cvss_v2_base_vector"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cvssV2Tv" />
 
@@ -118,7 +118,7 @@
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:text="/10"
+                    android:text="@string/ofTen"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="@+id/cvssV2Tv"
                     app:layout_constraintStart_toEndOf="@+id/cvssV2Tv"
@@ -128,7 +128,7 @@
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:text="/10"
+                    android:text="@string/ofTen"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/cvssV3TV" />
@@ -149,7 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Published:"
+                android:text="@string/published"
                 app:layout_constraintStart_toStartOf="@+id/subscriptionCPETv"
                 app:layout_constraintTop_toBottomOf="@+id/subscriptionCPETv" />
 
@@ -158,7 +158,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Last Modified:"
+                android:text="@string/last_modified"
                 app:layout_constraintStart_toStartOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -184,7 +184,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Description:"
+                android:text="@string/description"
                 app:layout_constraintStart_toStartOf="@+id/cvssConstraintLayout"
                 app:layout_constraintTop_toBottomOf="@+id/cvssConstraintLayout" />
 
@@ -192,7 +192,7 @@
                 android:id="@+id/cveDescriptionTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/cvssConstraintLayout"
                 app:layout_constraintStart_toStartOf="@+id/cvssConstraintLayout"
@@ -204,7 +204,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
-                android:text="Visit nvd.nist.gov for more inforamtions"
+                android:text="@string/more_information_on_nvd"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
@@ -214,18 +214,18 @@
                 android:id="@+id/cveDetailVendorTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/cveDescriptionTV"
                 app:layout_constraintTop_toBottomOf="@+id/SubscriptionTV"
                 tools:text="Microsoft" />
 
             <TextView
-                android:id="@+id/cveDetailproductTv"
+                android:id="@+id/cveDetailProductTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="TextView"
+                android:text=""
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/cveDetailVendorTv"
                 app:layout_constraintTop_toTopOf="@+id/cveDetailVendorTv"
@@ -236,7 +236,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Subscription:"
+                android:text="@string/subscription"
                 app:layout_constraintStart_toStartOf="@+id/cpeListTv"
                 app:layout_constraintTop_toBottomOf="@+id/cpeListTv" />
 
@@ -258,7 +258,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Subscription:"
+                android:text="@string/subscription"
                 app:layout_constraintStart_toStartOf="@+id/cveDescriptionTV"
                 app:layout_constraintTop_toBottomOf="@+id/cveDescriptionTV" />
 
@@ -268,7 +268,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:singleLine="false"
-                android:text="vulnerable: cpe string...\n cpe string..."
+                android:text=""
+                tools:text="vulnerable: cpe string...\n cpe string..."
                 app:layout_constraintStart_toStartOf="@+id/cveDetailVendorTv"
                 app:layout_constraintTop_toBottomOf="@+id/cveDetailVendorTv" />
 

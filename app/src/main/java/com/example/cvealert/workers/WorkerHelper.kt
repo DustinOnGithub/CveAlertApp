@@ -18,7 +18,7 @@ import com.example.cvealert.util.Constants
 import java.text.SimpleDateFormat
 import java.util.*
 
-class WorkerHelper(val applicationContext: Context, private val TAG: String) {
+class WorkerHelper(private val applicationContext: Context, private val TAG: String) {
 
     private var myRepository: MyRepository = MyRepository(
         MyDatabase.getDatabase(applicationContext).settingDao(),

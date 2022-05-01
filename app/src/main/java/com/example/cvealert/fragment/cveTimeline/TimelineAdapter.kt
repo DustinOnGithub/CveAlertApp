@@ -61,38 +61,42 @@ class TimelineAdapter : RecyclerView.Adapter<TimelineAdapter.TimelineViewHolder>
         val cvssTypeTv = view.findViewById<TextView>(R.id.cvssTypeTv)
         val severityTv = view.findViewById<TextView>(R.id.severityTv)
 
-        if (cve.cvssV3Score != Constants.NO_CVSS_SCORE) {
-            cvssTypeTv.text = "CVSS-v3"
-            severityTv.text = cve.cvssV3Score.toString()
-            severityTv.setTextColor(
-                ContextCompat.getColor(
-                    context,
-                    when (cve.cvssV3Severity) {
-                        "CRITICAL" -> R.color.cvssCritical
-                        "HIGH" -> R.color.cvssHigh
-                        "MEDIUM" -> R.color.cvssMedium
-                        "LOW" -> R.color.cvssLow
-                        else -> Color.BLACK
-                    }
+        when {
+            cve.cvssV3Score != Constants.NO_CVSS_SCORE -> {
+                cvssTypeTv.text = context.getString(R.string.cvssV3)
+                severityTv.text = cve.cvssV3Score.toString()
+                severityTv.setTextColor(
+                    ContextCompat.getColor(
+                        context,
+                        when (cve.cvssV3Severity) {
+                            "CRITICAL" -> R.color.cvssCritical
+                            "HIGH" -> R.color.cvssHigh
+                            "MEDIUM" -> R.color.cvssMedium
+                            "LOW" -> R.color.cvssLow
+                            else -> Color.BLACK
+                        }
+                    )
                 )
-            )
-        } else if (cve.cvssV2Score != Constants.NO_CVSS_SCORE) {
-            cvssTypeTv.text = "CVSS-v2"
-            severityTv.text = cve.cvssV2Score.toString()
-            severityTv.setTextColor(
-                ContextCompat.getColor(
-                    context,
-                    when (cve.cvssV3Severity) {
-                        "HIGH" -> R.color.cvssHigh
-                        "MEDIUM" -> R.color.cvssMedium
-                        "LOW" -> R.color.cvssLow
-                        else -> Color.BLACK
-                    }
+            }
+            cve.cvssV2Score != Constants.NO_CVSS_SCORE -> {
+                cvssTypeTv.text = context.getString(R.string.cvssV2)
+                severityTv.text = cve.cvssV2Score.toString()
+                severityTv.setTextColor(
+                    ContextCompat.getColor(
+                        context,
+                        when (cve.cvssV3Severity) {
+                            "HIGH" -> R.color.cvssHigh
+                            "MEDIUM" -> R.color.cvssMedium
+                            "LOW" -> R.color.cvssLow
+                            else -> Color.BLACK
+                        }
+                    )
                 )
-            )
-        } else {
-            cvssTypeTv.text = ""
-            severityTv.text = "N/A"
+            }
+            else -> {
+                cvssTypeTv.text = ""
+                severityTv.text = "N/A"
+            }
         }
     }
 

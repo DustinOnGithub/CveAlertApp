@@ -15,6 +15,31 @@
     <string name="application">Application</string>
     <string name="hardware">Hardware</string>
     <string name="not_an_nvd_application">This product uses the NVD API but is not endorsed or certified by the NVD.</string>
+    <string name="cvssV3">CVSS v3</string>
+    <string name="cvssV2">CVSS v2</string>
+    <string name="selectPart">select Part</string>
+    <string name="part">Part:</string>
+    <string name="vendor">Vendor</string>
+    <string name="product">Product</string>
+    <string name="version">Version</string>
+    <string name="update">Update</string>
+    <string name="software_edition">Software edition</string>
+    <string name="active">Active</string>
+    <string name="cvss_v3_base_vector">CVSS v3 Base vector:</string>
+    <string name="cvss_v2_base_vector">CVSS v2 Base vector:</string>
+    <string name="ofTen">/10</string>
+    <string name="published">Published:</string>
+    <string name="last_modified">Last Modified:</string>
+    <string name="description">Description:</string>
+    <string name="more_information_on_nvd">Visit nvd.nist.gov for more inforamtions</string>
+    <string name="subscription">Subscription:</string>
+    <string name="nvd_api_key">NVD-API-Key</string>
+    <string name="you_dont_need_an_api_key">You do not need an API Key. An API Key allows you more request per minute. You can request an API on the NVD webpage.</string>
+    <string name="please_add_your_first_subscription">PLease add your first subscription!</string>
+    <string name="no_data">No active subscriptions or no new CVEs found for your subscriptions.</string>
+    <string name="delete_subscription">delete Subscription</string>
+    <string name="enable_notifications">enable notifications</string>
+    <string name="activate_subscription">activate subscription</string>
 
     <string-array name="partOptions">
         <item>@string/undefined</item>

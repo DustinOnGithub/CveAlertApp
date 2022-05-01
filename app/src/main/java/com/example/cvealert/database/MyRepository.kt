@@ -17,7 +17,6 @@ class MyRepository(
     private val cveDao: CveDao
 ) {
 
-    val getAllSettings: LiveData<List<Setting>> = settingDao.getAll()
     val getSetting: LiveData<Setting> = settingDao.get()
     val getAllSubscription: LiveData<List<Subscription>> = subscriptionDao.getAll()
     val getAllActiveSubscriptions = subscriptionDao.getAllActive()
@@ -25,15 +24,15 @@ class MyRepository(
     val selectCVEwithSubscriptionAndCPEs: LiveData<List<CveWithSubscriptionAndCPEs>> =
         cveDao.selectCVEwithSubscription()
 
-    suspend fun insertCve(cve: Cve) {
+    fun insertCve(cve: Cve) {
         cveDao.insertCVE(cve)
     }
 
-    suspend fun updateCve(cve: Cve) {
+    fun updateCve(cve: Cve) {
         cveDao.update(cve)
     }
 
-    suspend fun deleteCve(cve: Cve) {
+    fun deleteCve(cve: Cve) {
         cveDao.delete(cve)
     }
 
@@ -41,11 +40,11 @@ class MyRepository(
         cveDao.deleteCveWithSubscription(subscription.id)
     }
 
-    suspend fun insertSetting(setting: Setting) {
+    fun insertSetting(setting: Setting) {
         settingDao.insert(setting)
     }
 
-    suspend fun updateSetting(setting: Setting) {
+    fun updateSetting(setting: Setting) {
         settingDao.updateSetting(setting)
     }
 
@@ -53,34 +52,34 @@ class MyRepository(
         return settingDao.getSync()
     }
 
-    suspend fun getSubscriptionById(id: Int): LiveData<Subscription> {
+    fun getSubscriptionById(id: Int): LiveData<Subscription> {
         return subscriptionDao.get(id)
     }
 
-    suspend fun insertSubscription(subscription: Subscription) {
+    fun insertSubscription(subscription: Subscription) {
         insertSubscriptionSync(subscription)
     }
 
     fun insertSubscriptionSync(subscription: Subscription): Int {
-        try {
-            return subscriptionDao.insert(subscription).toInt()
+        return try {
+            subscriptionDao.insert(subscription).toInt()
         } catch (e: SQLiteConstraintException) {
-            return -1
+            -1
         }
     }
 
-    suspend fun updateSubscription(subscription: Subscription) {
+    fun updateSubscription(subscription: Subscription) {
         try {
             subscriptionDao.update(subscription)
         } catch (e: SQLiteConstraintException) {
         }
     }
 
-    suspend fun deleteSubscription(subscription: Subscription) {
+    fun deleteSubscription(subscription: Subscription) {
         subscriptionDao.delete(subscription)
     }
 
-    suspend fun insertCves(cves: Iterable<Cve>) {
+    fun insertCves(cves: Iterable<Cve>) {
         cveDao.insertCVEs(cves)
     }
 
@@ -88,7 +87,7 @@ class MyRepository(
         cveDao.insertCVEs(cves)
     }
 
-    suspend fun insertCPEs(cpes: Iterable<Cpe>) {
+    fun insertCPEs(cpes: Iterable<Cpe>) {
         try {
             cveDao.insertCPEs(cpes)
         } catch (e: SQLiteConstraintException) {
@@ -106,7 +105,7 @@ class MyRepository(
         cveDao.deleteCveWherePublishedDateSAfter(dateTime)
     }
 
-    suspend fun deleteCveWherePublishedDateSAfter(time: String) {
+    fun deleteCveWherePublishedDateSAfter(time: String) {
         cveDao.deleteCveWherePublishedDateSAfter(time)
     }
 

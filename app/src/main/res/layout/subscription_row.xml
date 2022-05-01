@@ -37,7 +37,7 @@
             android:id="@+id/deleteSubscriptionIB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="delete Subscription"
+            android:contentDescription="@string/delete_subscription"
             android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cpeStringRowTV"
@@ -45,6 +45,7 @@
 
         <ImageView
             android:id="@+id/subNotificationEnabledIv"
+            android:contentDescription="@string/enable_notifications"
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,6 +56,7 @@
 
         <ImageView
             android:id="@+id/subIsActiveIv"
+            android:contentDescription="@string/activate_subscription"
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="parent"

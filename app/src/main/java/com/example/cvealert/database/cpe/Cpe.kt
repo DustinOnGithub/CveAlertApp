@@ -16,14 +16,12 @@ import kotlinx.parcelize.Parcelize
         Index(value = ["string", "vulnerable", "cve"], unique = true),
         Index(value = ["cve"], unique = false)
     ],
-    foreignKeys = arrayOf(
-        ForeignKey(
-            entity = Cve::class,
-            parentColumns = arrayOf("cve"),
-            childColumns = arrayOf("cve"),
-            onDelete = ForeignKey.CASCADE
-        )
-    )
+    foreignKeys = [ForeignKey(
+        entity = Cve::class,
+        parentColumns = ["cve"],
+        childColumns = ["cve"],
+        onDelete = ForeignKey.CASCADE
+    )]
 )
 data class Cpe(
     @PrimaryKey(autoGenerate = true)

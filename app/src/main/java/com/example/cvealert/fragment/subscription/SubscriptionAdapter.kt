@@ -1,5 +1,6 @@
 package com.example.cvealert.fragment.subscription
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
@@ -97,6 +98,7 @@ class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.Subscriptio
         return subscriptionList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(
         subscriptionList: List<Subscription>,
         viewModelDb: MyViewModelDb,

@@ -9,10 +9,22 @@
 
     <!--    TODO: add back button-->
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:text="@string/part"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/partSpinner"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.widget.Spinner
         android:id="@+id/partSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/selectPart"
         android:minWidth="10dp"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,8 +39,9 @@
         android:layout_height="52dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="Vendor"
-        android:inputType="textPersonName"
+        android:hint="@string/vendor"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,8 +54,9 @@
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="Product"
-        android:inputType="textPersonName"
+        android:hint="@string/product"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="@+id/vendorET"
@@ -55,7 +69,9 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
-        android:hint="Version"
+        android:hint="@string/version"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="@+id/productET"
         app:layout_constraintStart_toStartOf="@+id/productET"
@@ -63,10 +79,12 @@
 
     <EditText
         android:id="@+id/updateET"
+        android:inputType="text"
+        android:importantForAutofill="no"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
-        android:hint="Update"
+        android:hint="@string/update"
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="@+id/versionET"
         app:layout_constraintHorizontal_bias="0.51"
@@ -75,10 +93,12 @@
 
     <EditText
         android:id="@+id/swEditionET"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
-        android:hint="Software edition"
+        android:hint="@string/software_edition"
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="@+id/updateET"
         app:layout_constraintHorizontal_bias="0.498"
@@ -113,7 +133,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:checked="true"
-        android:text="Acitve"
+        android:text="@string/active"
         app:layout_constraintEnd_toEndOf="@+id/pushUpCB"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/pushUpCB"
@@ -129,16 +149,5 @@
         app:layout_constraintStart_toStartOf="@+id/isActiveCB"
         app:layout_constraintTop_toBottomOf="@+id/isActiveCB"
         tools:text="cpe:2.3:a:microsoft:internet_explorer:8.0.6001:beta:*:*:*:*:*:* " />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
-        android:text="Part:"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/partSpinner"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

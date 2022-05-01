@@ -7,7 +7,7 @@ import androidx.work.WorkerParameters
 class DeleteOldWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
 
     companion object {
-        val TAG = DeleteOldWorker::class.java.simpleName
+        val TAG: String = DeleteOldWorker::class.java.simpleName
     }
 
     override fun doWork(): Result {

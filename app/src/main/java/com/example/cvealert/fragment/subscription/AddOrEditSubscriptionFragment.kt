@@ -200,7 +200,6 @@ class AddOrEditSubscriptionFragment : Fragment() {
             } else {
                 "Subscription added!"
             }
-
         }
 
         enqueueGetAndStoreCVEsByCPEWorker(subscription)

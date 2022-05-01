@@ -7,7 +7,7 @@ import androidx.work.WorkerParameters
 class GetAndStoreWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
 
     companion object {
-        val TAG = GetAndStoreWorker::class.java.simpleName
+        val TAG: String = GetAndStoreWorker::class.java.simpleName
     }
 
     override fun doWork(): Result {

@@ -39,7 +39,7 @@ class CveDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.subscriptionStringTv).text =
             Cpe.generateStringFromSubscription(subscription)
         view.findViewById<TextView>(R.id.cveDetailVendorTv).text = subscription.vendor
-        view.findViewById<TextView>(R.id.cveDetailproductTv).text = subscription.product
+        view.findViewById<TextView>(R.id.cveDetailProductTv).text = subscription.product
 
         fillCPElist(view, args.selectedCVE.CPEs)
 
