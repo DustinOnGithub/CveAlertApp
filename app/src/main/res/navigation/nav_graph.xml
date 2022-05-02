@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/timelineFragment"
         android:name="com.example.cvealert.fragment.cveTimeline.TimelineFragment"
-        android:label="fragment_timeline"
+        android:label="Timeline"
         tools:layout="@layout/fragment_timeline">
         <action
             android:id="@+id/action_timelineFragment_to_cveDetailFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/subscriptionsFragment"
         android:name="com.example.cvealert.fragment.subscription.SubscriptionsFragment"
-        android:label="fragment_subscriptions"
+        android:label="Subscriptions"
         tools:layout="@layout/fragment_subscriptions">
         <action
             android:id="@+id/action_subscriptionsFragment_to_addSubscriptionFragment"
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/cveDetailFragment"
         android:name="com.example.cvealert.fragment.cveTimeline.CveDetailFragment"
-        android:label="fragment_cve_detail"
+        android:label="CVE"
         tools:layout="@layout/fragment_cve_detail">
         <argument
             android:name="selectedCVE"
@@ -41,13 +41,13 @@
     <fragment
         android:id="@+id/addSubscriptionFragment"
         android:name="com.example.cvealert.fragment.subscription.AddOrEditSubscriptionFragment"
-        android:label="fragment_add_subscription"
+        android:label="Subscription"
         tools:layout="@layout/fragment_add_or_edit_subscription">
         <argument
             android:name="selectedSubscription"
+            android:defaultValue="@null"
             app:argType="com.example.cvealert.database.subscription.Subscription"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
         <action
             android:id="@+id/action_addSubscriptionFragment_to_subscriptionsFragment"
             app:destination="@id/subscriptionsFragment" />
@@ -55,6 +55,6 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.cvealert.fragment.setting.SettingsFragment"
-        android:label="fragment_settings"
+        android:label="Settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>
