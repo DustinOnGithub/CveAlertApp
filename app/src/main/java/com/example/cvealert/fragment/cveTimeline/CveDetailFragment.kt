@@ -57,8 +57,7 @@ class CveDetailFragment : Fragment() {
                     "CRITICAL" -> R.color.cvssCritical
                     "HIGH" -> R.color.cvssHigh
                     "MEDIUM" -> R.color.cvssMedium
-                    "LOW" -> R.color.cvssLow
-                    else -> Color.BLACK
+                    else -> R.color.cvssLow
                 }
             )
         )
@@ -66,11 +65,10 @@ class CveDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.cvssV2Tv).setTextColor(
             ContextCompat.getColor(
                 requireContext(),
-                when (cve.cvssV3Severity) {
+                when (cve.cvssV2Severity) {
                     "HIGH" -> R.color.cvssHigh
                     "MEDIUM" -> R.color.cvssMedium
-                    "LOW" -> R.color.cvssLow
-                    else -> Color.BLACK
+                    else -> R.color.cvssLow
                 }
             )
         )
