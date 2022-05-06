@@ -17,8 +17,8 @@ interface SubscriptionDao {
 
     @Query(
         "SELECT * FROM subscription " +
-                "ORDER BY part, vendor, product, version, `update`, edition, language, sw_edition, " +
-                "target_software, target_hardware, other, is_active, push_up_notification  DESC"
+                "ORDER BY vendor, product, version, `update`, edition, language, sw_edition, " +
+                "target_software, target_hardware, other, part, is_active, push_up_notification  DESC"
     )
     fun getAll(): LiveData<List<Subscription>>
 
