@@ -12,7 +12,6 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cvealert.R
-import com.example.cvealert.Cpe
 import com.example.cvealert.database.MyViewModelDb
 import com.example.cvealert.database.subscription.Subscription
 import com.example.cvealert.util.Constants
@@ -41,9 +40,7 @@ class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.Subscriptio
                 builder.setNegativeButton("No") { _, _ -> }
                 builder.setTitle("Delete subscription")
                 builder.setMessage(
-                    "Are you sure you want to delete subscription for \n${
-                        Cpe.generateStringFromSubscription(item)
-                    }\n?"
+                    "Are you sure you want to delete subscription for \n${item.getCPE23URL()}\n?"
                 )
                 builder.create().show()
             }
@@ -70,8 +67,7 @@ class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.Subscriptio
             holder.itemView.findNavController().navigate(action)
         }
 
-        holder.itemView.findViewById<TextView>(R.id.cpeStringRowTV).text =
-            Cpe.generateStringFromSubscription(currentItem)
+        holder.itemView.findViewById<TextView>(R.id.cpeStringRowTV).text = currentItem.getCPE23URL()
 
         if (currentItem.isActive) {
             isActiveIV.setImageResource(R.drawable.ic_baseline_check_24)

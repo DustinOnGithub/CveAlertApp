@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.example.cvealert.Cpe
 import com.example.cvealert.R
 import com.example.cvealert.api.model.cves.MyCves
 import com.example.cvealert.api.service.NvdServiceInstance
@@ -47,10 +46,7 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
 
         subscriptions.forEach { subscription ->
 
-            if (!storeCVEsAndCPEsByCpeString(
-                    Cpe.generateStringFromSubscription(subscription), subscription.id
-                )
-            ) {
+            if (!storeCVEsAndCPEsByCpeString(subscription.getCPE23URL(), subscription.id)) {
                 Log.w(TAG, "failed to store and save CPEs and CVEs for subscription!")
             }
         }

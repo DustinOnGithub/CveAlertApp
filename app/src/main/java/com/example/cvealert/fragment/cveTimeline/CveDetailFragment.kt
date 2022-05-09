@@ -1,7 +1,6 @@
 package com.example.cvealert.fragment.cveTimeline
 
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,7 +11,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.navArgs
-import com.example.cvealert.Cpe
 import com.example.cvealert.R
 
 class CveDetailFragment : Fragment() {
@@ -36,8 +34,7 @@ class CveDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.cveDescriptionTV).text = cve.description
         view.findViewById<TextView>(R.id.publishedDateTv).text = cve.publishedDate
         view.findViewById<TextView>(R.id.lastModifiedTv).text = cve.lastModifiedDate
-        view.findViewById<TextView>(R.id.subscriptionStringTv).text =
-            Cpe.generateStringFromSubscription(subscription)
+        view.findViewById<TextView>(R.id.subscriptionStringTv).text = subscription.getCPE23URL()
 
         fillCPElist(view, args.selectedCVE.CPEs)
 

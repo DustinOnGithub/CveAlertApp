@@ -69,4 +69,23 @@ class Subscription(
 
         return true
     }
+
+    fun getCPE23URL(): String {
+
+        return "cpe:2.3:${partToString()}:${vendor.ifEmpty { "*" }}" +
+                ":${product.ifBlank { "*" }}:${version.ifBlank { "*" }}:${update.ifBlank { "*" }}" +
+                ":${edition.ifBlank { "*" }}:${language.ifBlank { "*" }}" +
+                ":${swEdition.ifBlank { "*" }}:${targetSoftware.ifBlank { "*" }}" +
+                ":${targetHardware.ifBlank { "*" }}:${other.ifBlank { "*" }}"
+
+    }
+
+    private fun partToString(): String {
+        return when (part) {
+            Part.APPLICATIONS -> "a"
+            Part.UNDEFINED -> "*"
+            Part.HARDWARE -> "h"
+            else -> "o"
+        }
+    }
 }

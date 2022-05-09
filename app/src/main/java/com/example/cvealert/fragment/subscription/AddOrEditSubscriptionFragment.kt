@@ -14,7 +14,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.work.*
 import com.example.cvealert.R
-import com.example.cvealert.Cpe
 import com.example.cvealert.database.MyDatabase
 import com.example.cvealert.database.MyRepository
 import com.example.cvealert.database.MyViewModelDb
@@ -140,16 +139,16 @@ class AddOrEditSubscriptionFragment : Fragment() {
     private fun updateCpeTV() {
 
         // DO NOT DELETE 'to.String()'; required because args
-        val cpe = Cpe(
-            vendor = cpeVendorET.text.toString().ifEmpty { "*" },
-            product = cpeProductET.text.toString().ifEmpty { "*" },
-            version = cpeVersionET.text.toString().ifEmpty { "*" },
-            swEdition = cpeSwEditionET.text.toString().ifEmpty { "*" },
-            update = cpeUpdateET.text.toString().ifEmpty { "*" },
+        val tempSubscription = Subscription(
+            vendor = cpeVendorET.text.toString(),
+            product = cpeProductET.text.toString(),
+            version = cpeVersionET.text.toString(),
+            swEdition = cpeSwEditionET.text.toString(),
+            update = cpeUpdateET.text.toString(),
             part = getSelectedPart()
         )
 
-        cpeStringTV.text = cpe.generateString()
+        cpeStringTV.text = tempSubscription.getCPE23URL()
     }
 
     private fun saveSubscription() {
@@ -218,7 +217,7 @@ class AddOrEditSubscriptionFragment : Fragment() {
         val worker = OneTimeWorkRequestBuilder<GetAndStoreCVEsByCPEWorker>()
             .setConstraints(constraints.build())
 
-        data.putString("cpe_string", Cpe.generateStringFromSubscription(subscription))
+        data.putString("cpe_string", subscription.getCPE23URL())
         data.putString("setting_id", subscription.id.toString())
 
         worker.setInputData(data.build())
