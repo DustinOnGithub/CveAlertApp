@@ -11,6 +11,7 @@ class Constants {
         const val EXPECTED_CVE_DATA_VERSION = "4.0"
         const val WORKER_REPEAT_INTERVAL: Long = 60 //minutes
         const val NO_CVSS_SCORE: Float = (-1).toFloat()
+        const val RESULTS_PER_PAGE = 100
 
         fun getLastCVEDateTime(): String {
             return ZonedDateTime.now(TimeZone.getDefault().toZoneId()).minusMonths(1)

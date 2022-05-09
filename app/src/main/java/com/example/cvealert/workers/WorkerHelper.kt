@@ -63,7 +63,7 @@ class WorkerHelper(private val applicationContext: Context, private val TAG: Str
     fun storeCVEsAndCPEsByCpeString(cpeString: String, subscriptionId: Int): Boolean {
 
         val getCvesCall = NvdServiceInstance.service.getCVEs(
-            resultsPerPage = 100,
+            resultsPerPage = Constants.RESULTS_PER_PAGE,
             apiKey = getApiKey(),
             cpeMatchString = cpeString,
             pubStartDate = Constants.getLastCVEDateTime(),
