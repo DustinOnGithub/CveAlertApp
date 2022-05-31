@@ -3,13 +3,13 @@ package com.cvealert.cvealert.fragment.cveTimeline
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.cvealert.cvealert.R
 import com.cvealert.cvealert.database.cpe.Cpe
@@ -90,9 +90,9 @@ class CveDetailFragment : Fragment() {
             }
         }
 
-        text += "Vulnerable:" + vulnerable
-        if (runningOn.count() > 0) {
-            text += "\nRunning on/with: " + runningOn
+        text += "Vulnerable:$vulnerable"
+        if (runningOn.isNotEmpty()) {
+            text += "\nRunning on/with: $runningOn"
         }
 
         view.findViewById<TextView>(R.id.cpeListTv).text = text

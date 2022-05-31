@@ -11,9 +11,9 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import com.cvealert.cvealert.util.Constants
 import com.cvealert.cvealert.workers.DeleteOldWorker
 import com.cvealert.cvealert.workers.GetAndStoreWorker
-import com.cvealert.cvealert.util.Constants
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.concurrent.TimeUnit
 
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             .setConstraints(constraints.build())
             .addTag(GetAndStoreWorker.TAG)
 
-        if (workStatus.count() == 0) {
+        if (workStatus.isEmpty()) {
             workManager.enqueue(getAndStoreWorker.build())
         }
     }
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             flexTimeInterval = 2, TimeUnit.HOURS
         ).addTag(DeleteOldWorker.TAG)
 
-        if (workStatus.count() == 0) {
+        if (workStatus.isEmpty()) {
             workManager.enqueue(deleteOldWorker.build())
         }
     }

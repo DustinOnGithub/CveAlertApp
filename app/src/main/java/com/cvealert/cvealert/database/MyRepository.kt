@@ -24,18 +24,6 @@ class MyRepository(
     val selectCVEwithSubscriptionAndCPEs: LiveData<List<CveWithSubscriptionAndCPEs>> =
         cveDao.selectCVEwithSubscription()
 
-    fun insertCve(cve: Cve) {
-        cveDao.insertCVE(cve)
-    }
-
-    fun updateCve(cve: Cve) {
-        cveDao.update(cve)
-    }
-
-    fun deleteCve(cve: Cve) {
-        cveDao.delete(cve)
-    }
-
     fun deleteCveWithSubscriptionSync(subscription: Subscription) {
         cveDao.deleteCveWithSubscription(subscription.id)
     }
@@ -50,14 +38,6 @@ class MyRepository(
 
     fun getSettingSyn(): Setting? {
         return settingDao.getSync()
-    }
-
-    fun getSubscriptionById(id: Int): LiveData<Subscription> {
-        return subscriptionDao.get(id)
-    }
-
-    fun insertSubscription(subscription: Subscription) {
-        insertSubscriptionSync(subscription)
     }
 
     fun insertSubscriptionSync(subscription: Subscription): Int {
@@ -79,19 +59,8 @@ class MyRepository(
         subscriptionDao.delete(subscription)
     }
 
-    fun insertCves(cves: Iterable<Cve>) {
-        cveDao.insertCVEs(cves)
-    }
-
     fun insertCvesSync(cves: Iterable<Cve>) {
         cveDao.insertCVEs(cves)
-    }
-
-    fun insertCPEs(cpes: Iterable<Cpe>) {
-        try {
-            cveDao.insertCPEs(cpes)
-        } catch (e: SQLiteConstraintException) {
-        }
     }
 
     fun insertCPEsSync(cpes: Iterable<Cpe>) {
