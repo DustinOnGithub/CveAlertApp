@@ -5,6 +5,8 @@
 Application to receive notifications about new CVE (Common Vulnerabilities and Exposures) for
 products that interest you. The application stores the received CVEs in a local *Room* Database.
 
+Feel free to contribute.
+
 ## API
 
 The application uses the API of the *National Vulnerabilities Database (NVD)*. To obtain specific
