@@ -20,7 +20,8 @@ Android device with minimum sdk version 26.
 ## ToDo
 
 - *Active* and *enable/disable pushUp-notifications* options are not completly implemented
-- Update UI
+- Improve UI
+- Improve navigation
 - CPE search
 - Add filter for timeline
 
