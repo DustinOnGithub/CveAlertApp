@@ -11,7 +11,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.cvealert"
+        applicationId "com.cvealert.cvealert"
         minSdk 26
         targetSdk 31
         versionCode 1
@@ -36,7 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    namespace 'com.example.cvealert'
+    namespace 'com.cvealert.cvealert'
 }
 
 dependencies {

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/timelineFragment"
-        android:name="com.example.cvealert.fragment.cveTimeline.TimelineFragment"
+        android:name="com.cvealert.cvealert.fragment.cveTimeline.TimelineFragment"
         android:label="Timeline"
         tools:layout="@layout/fragment_timeline">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/subscriptionsFragment"
-        android:name="com.example.cvealert.fragment.subscription.SubscriptionsFragment"
+        android:name="com.cvealert.cvealert.fragment.subscription.SubscriptionsFragment"
         android:label="Subscriptions"
         tools:layout="@layout/fragment_subscriptions">
         <action
@@ -27,12 +27,12 @@
     </fragment>
     <fragment
         android:id="@+id/cveDetailFragment"
-        android:name="com.example.cvealert.fragment.cveTimeline.CveDetailFragment"
+        android:name="com.cvealert.cvealert.fragment.cveTimeline.CveDetailFragment"
         android:label="CVE"
         tools:layout="@layout/fragment_cve_detail">
         <argument
             android:name="selectedCVE"
-            app:argType="com.example.cvealert.database.relation.CveWithSubscriptionAndCPEs"
+            app:argType="com.cvealert.cvealert.database.relation.CveWithSubscriptionAndCPEs"
             app:nullable="false" />
         <action
             android:id="@+id/action_cveDetailFragment_to_timelineFragment"
@@ -40,13 +40,13 @@
     </fragment>
     <fragment
         android:id="@+id/addSubscriptionFragment"
-        android:name="com.example.cvealert.fragment.subscription.AddOrEditSubscriptionFragment"
+        android:name="com.cvealert.cvealert.fragment.subscription.AddOrEditSubscriptionFragment"
         android:label="Subscription"
         tools:layout="@layout/fragment_add_or_edit_subscription">
         <argument
             android:name="selectedSubscription"
             android:defaultValue="@null"
-            app:argType="com.example.cvealert.database.subscription.Subscription"
+            app:argType="com.cvealert.cvealert.database.subscription.Subscription"
             app:nullable="true" />
         <action
             android:id="@+id/action_addSubscriptionFragment_to_subscriptionsFragment"
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.cvealert.fragment.setting.SettingsFragment"
+        android:name="com.cvealert.cvealert.fragment.setting.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>
