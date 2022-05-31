@@ -12,6 +12,7 @@ class Constants {
         const val WORKER_REPEAT_INTERVAL: Long = 60 //minutes
         const val NO_CVSS_SCORE: Float = (-1).toFloat()
         const val RESULTS_PER_PAGE = 100
+        const val GITHUB_REPO = "https://github.com/DustinOnGithub/CveAlertApp"
         private const val MONTHS_BACK: Long = 1
 
         fun getLastCVEDateTime(): String {

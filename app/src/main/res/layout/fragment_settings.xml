@@ -64,4 +64,24 @@
         app:layout_constraintStart_toStartOf="@+id/apiKeyView"
         app:layout_constraintTop_toBottomOf="@+id/apiKeyView" />
 
+    <ImageView
+        android:id="@+id/gitHubIV"
+        android:layout_width="64px"
+        android:layout_height="64px"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/saveSettingsBtn"
+        app:layout_constraintStart_toStartOf="@+id/textView12"
+        tools:src="@drawable/github_mark_64px" />
+
+    <TextView
+        android:id="@+id/gitHubTV"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:text="Visit the GitHub Repository!"
+        app:layout_constraintBottom_toBottomOf="@+id/gitHubIV"
+        app:layout_constraintStart_toEndOf="@+id/gitHubIV"
+        app:layout_constraintTop_toTopOf="@+id/gitHubIV"
+        app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
